@@ -8,6 +8,7 @@
         public string HalfDayWeekend { get; set; }
         public string DayWeekend { get; set; }
         public string DayWeekDay { get; set; }
+        public string Class { get; set; }
         
     }
 }

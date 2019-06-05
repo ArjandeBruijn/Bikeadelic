@@ -224,9 +224,23 @@ namespace StrollAndRollDataAccess
                 return inventoryGroup;
             }
 
-            InventoryGroup[] inventoryGroups = GetItems(sql, GetInventoryGroupFromReader);
-             
-            return inventoryGroups;
+            InventoryGroup[] inventoryGroupValues = GetItems(sql, GetInventoryGroupFromReader);
+
+            Bike[] bikes = GetBikes();
+
+            List<InventoryGroup> inventoryGroups = new List<InventoryGroup>();
+
+            foreach (Bike bike in bikes)
+            {
+                InventoryGroup[] groups 
+                    = inventoryGroupValues.Where(ig => ig.BikeId == bike.Id)
+                    .OrderByDescending(ig=> ig.Model)
+                    .ToArray();
+
+                inventoryGroups.AddRange(groups);
+            }
+
+            return inventoryGroups.ToArray();
         }
         public static AppointmentPrices GetPriceEstimateRental
             (InventoryGroup[] desiredBikes,
@@ -496,20 +510,33 @@ namespace StrollAndRollDataAccess
 
                 bikePrices.DayWeekDay = reader["DayWeekDay"].ToString();
 
+                bikePrices.Class = reader["Class"].ToString();
+
                 return bikePrices;
             }
 
-            BikePrices[] prices = GetItems(sql, GetBikePricesFromReader);
+            BikePrices[] pricesValues = GetItems(sql, GetBikePricesFromReader);
 
             Bike[] bikes = GetBikes();
 
-            foreach (BikePrices price in prices)
+            foreach (BikePrices price in pricesValues)
             {
                 price.BikeName =
                     bikes.Single(bike => bike.Id.ToLower() == price.BikeId.ToLower()).Name;
             }
 
-            return prices;
+            List<BikePrices> prices = new List<BikePrices>();
+
+            foreach (Bike bike in bikes)
+            {
+                BikePrices price = pricesValues.SingleOrDefault(pv => pv.BikeId == bike.Id);
+
+                if (price != null) {
+                    prices.Add(price);
+                }
+            }
+             
+            return prices.ToArray();
         }
         public static Bike[] GetActiveBikes()
         {
@@ -534,11 +561,11 @@ namespace StrollAndRollDataAccess
 
                 bike.Name = reader["name"].ToString().Replace(" ", "");
 
-                bike.PictureUrl = reader["PictureUrl"].ToString();
+                bike.PictureUrl = reader["PictureUrl"] != System.DBNull.Value ? reader["PictureUrl"].ToString():null;
 
-                bike.Description = reader["Description"].ToString();
+                bike.Description = reader["Description"] != System.DBNull.Value? reader["Description"].ToString() :null;
 
-                bike.VideoUrl = reader["VideoUrl"].ToString();
+                bike.VideoUrl = reader["VideoUrl"] != System.DBNull.Value ? reader["VideoUrl"].ToString() :null;
 
                 bike.DisplayOrder = Convert.ToInt32(reader["DisplayOrder"]);
 
@@ -546,7 +573,10 @@ namespace StrollAndRollDataAccess
             }
 
             Bike[] bikes = 
-                GetItems(sqlString, GetBikeFromReader).OrderByDescending(b => b.DisplayOrder>0).ThenBy(b=> b.DisplayOrder).ToArray();
+                GetItems(sqlString, GetBikeFromReader)
+                .OrderByDescending(b => b.DisplayOrder>0)
+                .ThenBy(b=> b.DisplayOrder)
+                 .ToArray();
 
             return bikes;
 

@@ -19,6 +19,8 @@
 
                     var hdrRowWeekPart = table.insertRow(-1);
 
+                    hdrRowWeekPart.style.borderBottom = '1px dotted #000';
+ 
                     hdrRowWeekPart.insertCell(-1);
 
                     var cell = hdrRowWeekPart.insertCell(-1);
@@ -31,9 +33,11 @@
 
                     cellWeekendHdrCell.style.textAlign = 'center';
 
-                    cellWeekendHdrCell.colSpan = 2
+                    cellWeekendHdrCell.colSpan = 3;
 
                     var hdrRow = table.insertRow(-1);
+
+                    hdrRow.style.borderBottom = '1px solid #000';
 
                     var hdrCellBikeName = hdrRow.insertCell(-1);
 
@@ -50,6 +54,10 @@
                     var hdrDay = hdrRow.insertCell(-1);
 
                     hdrDay.innerHTML = "Day";
+
+                    var hdrClass = hdrRow.insertCell(-1);
+
+                    hdrClass.innerHTML = "Class";
 
                     for (var i = 0; i < result.d.length; i++) {
 
@@ -73,6 +81,10 @@
 
                         dayCell.innerHTML = prices.DayWeekend;
 
+                        var dayClass = row.insertCell();
+
+                        dayClass.innerHTML = prices.Class;
+
                     }
 
 
@@ -95,9 +107,9 @@
 
             <table id="priceTable" class="columnBorderTable"></table>
 
-            <div>- Half day: any time frame that does not cross noon</div>
-            <div>- Day: any time frame that does cross noon</div>
-
+            <div>- Half day: 9:00 AM to 2:00 PM or 2:00 PM to 7:00 PM</div>
+            <div>- Day: 9:00 AM to 7:00 PM</div>
+            <div>- Class: instruction each Saturday from 9:00 AM to 10:00 AM in East Side Park, included 4 hours rental (10:00 AM to 2:00 PM)</div>
         </div>
         <div class="one50">
 

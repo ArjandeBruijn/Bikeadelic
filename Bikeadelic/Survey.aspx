@@ -81,7 +81,7 @@
 
         <tr>
             <td></td>
-            <td>What if anything do you dislike about our website or logo? What would you change?
+            <td>What if anything do you dislike about our website? What would you change?
             </td>
             <td>
                 <input id="whatDoYouDislikeAboutOurWebsite" />
