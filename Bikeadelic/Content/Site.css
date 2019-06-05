@@ -1,0 +1,220 @@
+﻿
+/* Set widths on the form inputs since otherwise they're 100% wide */
+input,
+select,
+textarea {
+    min-width: 100%;
+}
+
+.navbar {
+    background-color: red;
+}
+
+.wrapper {
+    text-align: center;
+    width: 100%;
+}
+
+.columnBorderTable td {
+    border-right: 1px solid #000;
+}
+
+.columnBorderTable td:first-child {
+    border-left: none;
+}
+
+.columnBorderTable td:last-child {
+    border-right: none;
+}
+
+.columnBorderTable tr:first-child {
+    border-bottom: 1px solid #000;
+}
+
+.columnBorderTable td {
+    padding: 10px;
+}
+
+td {
+    vertical-align: top;
+}
+
+#informationAndPreferencesTable td {
+    vertical-align: middle;
+    padding-right: 0em;
+    padding-top: 0em;
+    padding-bottom: 0.3em;
+}
+.ageSelectionTable td {
+    padding-top: 0em;
+    padding-bottom: 0em;
+}
+td {
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
+
+ul li, .navbar-brand {
+    color: yellow;
+    font-size: 30px;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.centered {
+    display: inline-block;
+}
+.centered_div {
+    width: 10%;
+    height: 2%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -5%;
+    margin-top: -1%;
+}
+.gradredgreen {
+    background-image: linear-gradient(to right, red 50%, green 51%);
+}
+.gradgreenred {
+    background-image: linear-gradient(to right, green 50%, red 51%);
+}
+.gradwhitered {
+    background-image: linear-gradient(to right, white 50%, red 51%);
+}
+.gradwhitegreen {
+    background-image: linear-gradient(to right, white 50%, green 51%);
+}
+.gradgreenwhite {
+    background-image: linear-gradient(to right, green 50%, white 51%);
+}
+.gradgreen {
+    background-image: linear-gradient(to right, green 50%, green 51%);
+}
+.gradred2 {
+    background-image: linear-gradient(to right, red 50%, red 51%);
+}
+.gradred {
+    background-image: linear-gradient(to right, red 50%, red 51%);
+}
+.gradredwhite {
+    background-image: linear-gradient(to right, red 50%, white 51%);
+}
+.selectedCalendarCell {
+    background-color: forestgreen;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    .calendarCell {
+        min-width: 90px;
+        min-height: 90px;
+        width: 80px;
+        height: 80px;
+        border: 1px solid black;
+    }
+
+    .narrowOnLargeScreens {
+        width: 60%;
+    }
+
+    ul li, .navbar-brand {
+        color: yellow;
+        font-size: 30px;
+    }
+
+    .jumbotron {
+        margin-top: 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .body-content {
+        padding: 0;
+    }
+
+    .wrap {
+        display: flex;
+    }
+
+    .one50 {
+        width: 50%;
+    }
+
+    .one33 {
+        width: 33%;
+    }
+
+    .one60 {
+        width: 60%;
+    }
+
+    .two40 {
+        width: 40%;
+    }
+
+    div {
+        font-size: 17px;
+        padding: 10px;
+    }
+
+    #FrontPagePhoto {
+        width: 100%;
+    }
+
+    
+}
+
+
+@media (max-width: 767px) {
+
+    .calendarCell {
+        min-width: 30px;
+        min-height: 30px;
+        width: 30px;
+        height: 30px;
+        border: 1px solid black;
+    }
+
+    #FrontPagePhoto {
+        width: 50%;
+    }
+
+    ul li, .navbar-brand {
+        color: yellow;
+        font-size: 20px;
+    }
+    ul li a {
+       margin:0px;
+    }
+    .navbar-brand {
+        color: yellow;
+        font-size: 30px;
+    }
+
+    div {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .wrap {
+        flex-direction: column-reverse;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+     
+}
