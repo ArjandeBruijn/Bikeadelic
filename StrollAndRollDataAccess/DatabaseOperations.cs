@@ -10,10 +10,10 @@ namespace StrollAndRollDataAccess
 {
     public static class DatabaseOperations
     {
-        public static string InventorySelectSql => "select count(b.name) as 'Count', b.name, b.id, m.model from inventory i " +
+        public static string InventorySelectSql => "select count(b.name) as 'Count', b.name, b.id, m.model, m.id as modelid from inventory i " +
             $"inner join bikes b on i.bikeid = b.id " +
             $"left outer join bikemodels m on m.id =  i.bikeModel " +
-            $"group by b.name, b.id, m.model ";
+            $"group by b.name, b.id, m.model, m.id ";
 
         static string ConnectionString => "Data Source=tcp:s13.winhost.com;Initial Catalog = DB_127283_data; User ID = DB_127283_data_user; Password=G0dverd0mme!;Integrated Security = False;";
 
@@ -221,6 +221,8 @@ namespace StrollAndRollDataAccess
 
                 inventoryGroup.Model = reader["Model"].ToString();
 
+                inventoryGroup.ModelId = reader["modelid"].ToString();
+
                 return inventoryGroup;
             }
 
@@ -353,7 +355,10 @@ namespace StrollAndRollDataAccess
                             {
 
                                 InventoryGroup inventoryGroup
-                                    = inventory.Single(i => i.BikeId == booking.BikeId);
+                                    = inventory
+                                    .Single(i => i.BikeId == booking.BikeId &&
+                                    booking.ModelId == null ||
+                                    i.ModelId == booking.ModelId);
 
                                 inventoryGroup.Available--;
 

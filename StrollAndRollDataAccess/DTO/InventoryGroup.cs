@@ -18,6 +18,8 @@ namespace StrollAndRollDataAccess
 
         public int Available { get; set; }
 
+        public string ModelId { get; set; }
+
         public override string ToString()
         {
             return $"{Name} - {Model}: {Available}";
@@ -28,6 +30,7 @@ namespace StrollAndRollDataAccess
         {
             Name = inventory.Name;
             Model = inventory.Model;
+            ModelId = inventory.ModelId;
             BikeId = inventory.BikeId;
             Wanted = inventory.Wanted;
             Available = inventory.Available;

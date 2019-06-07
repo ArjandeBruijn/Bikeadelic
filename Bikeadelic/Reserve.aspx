@@ -134,14 +134,17 @@
         }
         var UpdateInventoryGroup = function (id, value) {
 
+            var bikeId  = id.split("_")[0];
+
+            var modelId  = id.split("_")[1];
+
             for (var ig = 0; ig < InventoryGroups.length; ig++) {
  
                 var inventoryGroup = InventoryGroups[ig];
 
-                if (inventoryGroup.BikeId == id) {
-
+                if (inventoryGroup.BikeId == bikeId && inventoryGroup.ModelId == modelId)
+                {
                     inventoryGroup.Wanted = value;
-
                 }
 
             }
@@ -222,7 +225,7 @@
 
                         var countCell = row.insertCell(-1);
 
-                        countCell.innerHTML = " <input style='padding: 1px;' id = " + inventoryGroup.BikeId + " type='number' value = " + inventoryGroup.Wanted + " min = 0 onchange= 'UpdateInventoryGroup(id, value); GetBikesAvailability();' max=" + inventoryGroup.Available + " />";
+                        countCell.innerHTML = " <input style='padding: 1px;' id = " + inventoryGroup.BikeId + "_"+ inventoryGroup.ModelId +" type='number' value = " + inventoryGroup.Wanted + " min = 0 onchange= 'UpdateInventoryGroup(id, value); GetBikesAvailability();' max=" + inventoryGroup.Available + " />";
 
                         row.insertCell(-1);
                     }

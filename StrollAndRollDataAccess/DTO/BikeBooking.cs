@@ -14,6 +14,6 @@ namespace StrollAndRollDataAccess
 
         public string BikeId { get; set; }
 
-        
+        public string ModelId { get; set; }
     }
 }
