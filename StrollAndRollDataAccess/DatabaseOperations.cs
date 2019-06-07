@@ -619,9 +619,13 @@ namespace StrollAndRollDataAccess
                     {
                         string id = Guid.NewGuid().ToString();
 
-                        string bikeId = bikes.Single(i => i.Name == inventoryGroup.Name).Id;
+                        Bike bike = bikes.Single(i => i.Name == inventoryGroup.Name);
 
-                        string sql = $"insert into bikeBookings (id, bikeid, appointmentid) values ('{id}', '{bikeId}','{AppointmentId}')";
+                        string bikeId = bike.Id;
+
+                        string bikeModel = inventoryGroup.Model;
+
+                        string sql = $"insert into bikeBookings (id, bikeid, bikemodel, appointmentid) values ('{id}', '{bikeId}', '{bikeModel}','{AppointmentId}')";
 
                         using (var command = new SqlCommand(sql, conn))
                         {
