@@ -24,7 +24,7 @@
              
             Bikeadelics-rentals is an exciting new family business to rent out 
                 unconventional bikes.  We are based in Fort Collins but we will drop off 
-                the bikes you reserve online anywhere in Laramie .  
+                the bikes you reserve online anywhere in Fort Collins.  
                 You can rent any combination of available bicycles or the whole fleet with 
                 trailer for a party or festival. 
         </div>

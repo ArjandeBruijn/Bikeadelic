@@ -8,6 +8,8 @@ namespace StrollAndRollDataAccess
 {
     public class InventoryGroup
     {
+        public int DisplayOrder { get; set; }
+
         public string Name { get; set;}
 
         public string Model { get; set; }

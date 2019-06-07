@@ -10,10 +10,10 @@ namespace StrollAndRollDataAccess
 {
     public static class DatabaseOperations
     {
-        public static string InventorySelectSql => "select count(b.name) as 'Count', b.name, b.id, m.description, m.id as modelid from inventory i " +
+        public static string InventorySelectSql => "select count(b.name) as 'Count',m.displayorder, b.name, b.id, m.description, m.id as modelid from inventory i " +
             $"inner join bikes b on i.bikeid = b.id " +
             $"left outer join bikemodels m on m.id =  i.bikeModel " +
-            $"group by b.name, b.id, m.description, m.id ";
+            $"group by b.name, b.id, m.description, m.id, m.displayorder ";
 
         static string ConnectionString => "Data Source=tcp:s13.winhost.com;Initial Catalog = DB_127283_data; User ID = DB_127283_data_user; Password=G0dverd0mme!;Integrated Security = False;";
 
@@ -221,6 +221,11 @@ namespace StrollAndRollDataAccess
 
                 inventoryGroup.Model = reader["description"].ToString();
 
+                if (reader["DisplayOrder"] != System.DBNull.Value)
+                {
+                    inventoryGroup.DisplayOrder = Convert.ToInt32(reader["DisplayOrder"].ToString());
+                }
+
                 inventoryGroup.ModelId = reader["modelid"].ToString();
 
                 return inventoryGroup;
@@ -236,7 +241,8 @@ namespace StrollAndRollDataAccess
             {
                 InventoryGroup[] groups 
                     = inventoryGroupValues.Where(ig => ig.BikeId == bike.Id)
-                    .OrderByDescending(ig=> ig.Model)
+                    .OrderBy (ig=> ig.DisplayOrder)
+                    
                     .ToArray();
 
                 inventoryGroups.AddRange(groups);
@@ -556,7 +562,17 @@ namespace StrollAndRollDataAccess
                     prices.Add(price);
                 }
             }
-             
+
+            InventoryGroup[] inventory = GetInventory();
+
+            BikePrices[] pricesNoInventory
+                = prices.Where(p => !inventory.Any(i => i.BikeId == p.BikeId)).ToArray();
+
+            foreach (BikePrices bp in pricesNoInventory)
+            {
+                prices.Remove(bp);
+            }
+
             return prices.ToArray();
         }
         public static Bike[] GetActiveBikes()

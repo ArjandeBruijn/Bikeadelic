@@ -252,7 +252,7 @@
 
                     optionDropOff.value = 'dropoff';
 
-                    optionDropOff.text = 'Drop Off';
+                    optionDropOff.text = 'Delivery';
 
                     selectDropDown.appendChild(optionDropOff);
 
@@ -368,7 +368,7 @@
 
                     var pricesRowHdr = pricesRentalRow.insertCell(-1);
 
-                    pricesRowHdr.innerHTML = '<b>Prices</b>';
+                    pricesRowHdr.innerHTML = '<b>Price</b>';
 
                     var pricesRentalHdrCell = pricesRentalRow.insertCell(-1);
 

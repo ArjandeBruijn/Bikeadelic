@@ -25,7 +25,7 @@
 
                     var cell = hdrRowWeekPart.insertCell(-1);
 
-                    cell.innerHTML = 'Week';
+                    cell.innerHTML = 'Weekday';
                      
                     var cellWeekendHdrCell = hdrRowWeekPart.insertCell(-1);
 
@@ -116,16 +116,8 @@
             <h2 >Delivery</h2>
 
             <div class="narrowOnLargeScreens">
-                We charge a $25 base fee for delivery.
-        
-                We further charge $1.00 delivery fee for each mile 
-                that Google Maps says is between your delivery location and 
-                our our business adress at 
-                515 Cowan Street 80524 in Fort Collins. 
-                If your pickup location is different from your delivery location 
-                then we use the location farthest away from our business address.
-                We do not charge mileage within Fort Collins 
-                Old Town area.
+                We charge a $25 flat fee for delivery.
+         
 
             </div>
 
