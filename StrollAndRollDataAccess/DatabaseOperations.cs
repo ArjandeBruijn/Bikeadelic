@@ -10,10 +10,10 @@ namespace StrollAndRollDataAccess
 {
     public static class DatabaseOperations
     {
-        public static string InventorySelectSql => "select count(b.name) as 'Count', b.name, b.id, m.model, m.id as modelid from inventory i " +
+        public static string InventorySelectSql => "select count(b.name) as 'Count', b.name, b.id, m.description, m.id as modelid from inventory i " +
             $"inner join bikes b on i.bikeid = b.id " +
             $"left outer join bikemodels m on m.id =  i.bikeModel " +
-            $"group by b.name, b.id, m.model, m.id ";
+            $"group by b.name, b.id, m.description, m.id ";
 
         static string ConnectionString => "Data Source=tcp:s13.winhost.com;Initial Catalog = DB_127283_data; User ID = DB_127283_data_user; Password=G0dverd0mme!;Integrated Security = False;";
 
@@ -219,7 +219,7 @@ namespace StrollAndRollDataAccess
 
                 inventoryGroup.BikeId = reader["Id"].ToString();
 
-                inventoryGroup.Model = reader["Model"].ToString();
+                inventoryGroup.Model = reader["description"].ToString();
 
                 inventoryGroup.ModelId = reader["modelid"].ToString();
 
@@ -353,15 +353,22 @@ namespace StrollAndRollDataAccess
                         {
                             foreach (BikeBooking booking in appointment.BikeBookings)
                             {
-
-                                InventoryGroup inventoryGroup
+                                 
+                                InventoryGroup[] matchingInventoryGroups
                                     = inventory
-                                    .Single(i => i.BikeId == booking.BikeId &&
-                                    booking.ModelId == null ||
-                                    i.ModelId == booking.ModelId);
+                                    .Where(i => i.BikeId == booking.BikeId &&
+                                    (booking.ModelId == null ||
+                                    i.ModelId == booking.ModelId)).ToArray();
 
-                                inventoryGroup.Available--;
-
+                                if (matchingInventoryGroups.Count() != 1)
+                                {
+                                    throw new System.Exception("Unable to determine inventory group");
+                                }
+                                else
+                                {
+                                    matchingInventoryGroups.Single().Available--;
+                                }
+                                 
                             }
                         }
                         if (bikesAvailability.Inventory != null)
@@ -373,8 +380,17 @@ namespace StrollAndRollDataAccess
                                      
                             foreach (InventoryGroup requestedBikeNrById in requestedBikesNrById)
                             {
-                                InventoryGroup inventoryGroup =
-                                   inventory.SingleOrDefault(i => i.Name == requestedBikeNrById.Name);
+                                InventoryGroup[] matchingInventoryGroups 
+                                    = inventory.Where(i => i.Name == requestedBikeNrById.Name &&
+                                    i.ModelId== requestedBikeNrById.ModelId)
+                                    .ToArray();
+
+                                if (matchingInventoryGroups.Count() != 1)
+                                {
+                                    throw new System.Exception("Unable to determine matching inventorygroup");
+                                }
+
+                                InventoryGroup inventoryGroup =  matchingInventoryGroups.Single();
 
                                 if (inventoryGroup.Available < requestedBikeNrById.Wanted)
                                 {
@@ -628,9 +644,9 @@ namespace StrollAndRollDataAccess
 
                         string bikeId = bike.Id;
 
-                        string bikeModel = inventoryGroup.Model;
+                        string bikeModelID = inventoryGroup.ModelId;
 
-                        string sql = $"insert into bikeBookings (id, bikeid, bikemodel, appointmentid) values ('{id}', '{bikeId}', '{bikeModel}','{AppointmentId}')";
+                        string sql = $"insert into bikeBookings (id, bikeid, bikeModelID , appointmentid) values ('{id}', '{bikeId}', '{bikeModelID}','{AppointmentId}')";
 
                         using (var command = new SqlCommand(sql, conn))
                         {
@@ -695,6 +711,8 @@ namespace StrollAndRollDataAccess
                 bikeBooking.AppointmentId = reader["AppointmentId"].ToString();
 
                 bikeBooking.BikeId = reader["BikeId"].ToString();
+
+                bikeBooking.ModelId = reader["bikeModelId"].ToString();
 
                 return bikeBooking;
             }
