@@ -50,6 +50,7 @@
     <Compile Include="DTO\AppointmentPrices.cs" />
     <Compile Include="DTO\Bike.cs" />
     <Compile Include="DTO\BikeBooking.cs" />
+    <Compile Include="DTO\BikeModel.cs" />
     <Compile Include="DTO\BikePrices.cs" />
     <Compile Include="DTO\BikesAvailability.cs" />
     <Compile Include="DTO\DateSelection.cs" />

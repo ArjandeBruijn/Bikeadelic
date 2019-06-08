@@ -38,16 +38,18 @@ namespace StrollAndRollDesktopApp
         public void Submit()
         {
             ResultMessage = "";
-
-            if (NewBikeName == false) {
-
-                string[] bikesNames = DatabaseOperations.GetBikes().Select(b => b.Name).ToArray();
-
-                if (!bikesNames.Any(n => n == BikeName)) 
+                
+            if (NewBikeName == false)
+            {
+                if (AddOrRemove == true)
                 {
-                    ResultMessage = $"No bike name {BikeName}";
-                    return;
+                    DatabaseOperations.AddBike(BikeName, NewBikeName, BikeModel, NewBikeModel);
                 }
+                else
+                {
+                    DatabaseOperations.RemoveBike(BikeName, BikeModel);
+                }
+                 
             }
 
         }

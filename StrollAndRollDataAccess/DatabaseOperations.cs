@@ -99,6 +99,86 @@ namespace StrollAndRollDataAccess
             }
             return GetItems(sql, GetFaqFromReader);
         }
+        public static BikeModel[] GetBikeModels()
+        {
+            string sql = "select * from dbo.BikeModels";
+
+            BikeModel GetBikeModelFromReader(SqlDataReader reader)
+            {
+                BikeModel bikeModel = new BikeModel();
+
+                bikeModel.ID = reader["ID"].ToString();
+
+                bikeModel.Description = reader["Description"].ToString();
+                 
+                return bikeModel;
+            }
+            return GetItems(sql, GetBikeModelFromReader);
+             
+        }
+        public static Bike GetBikeByName(string bikeName)
+        {
+            Bike[] bikes = DatabaseOperations.GetBikes();
+
+            Bike currentBike = bikes.SingleOrDefault(b => b.Name == bikeName);
+
+            return currentBike;
+        }
+        public static void RemoveBike(string bikeName, string bikeModelDescription)
+        {
+            Bike currentBike = GetBikeByName(bikeName);
+
+            InventoryGroup[] inventory = GetInventory();
+
+            //string id = inventory.SingleOrDefault(i => i.BikeId == currentBike.Id);
+
+
+
+            //string sql = $"delete from dbo.inventory where id ={id}";
+
+
+
+        }
+        public static void AddBike(string bikeName, bool newBikeName, string bikeModelDescription, bool newBikeModel )
+        {
+            Bike currentBike = GetBikeByName(bikeName);
+             
+            if (newBikeName==false)
+            {
+                if (currentBike==null)
+                {
+                    throw new System.Exception($"No bike name {bikeName}");
+                }
+            }
+             
+            string bikeId = currentBike.Id;
+
+            BikeModel[] bikeModels = DatabaseOperations.GetBikeModels();
+
+            BikeModel currentBikeModel = bikeModels.SingleOrDefault(bm => bm.Description == bikeModelDescription);
+
+            if (newBikeModel == false)
+            {
+                if (currentBikeModel == null)
+                {
+                    //throw new System.Exception($"No bikemodel name {bikeModelDescription}");
+                }
+            }
+
+            string bikeModelId = currentBikeModel != null ? currentBikeModel.ID : "";
+
+            string newGuid = Guid.NewGuid().ToString();
+
+            string sql = $"insert into dbo.inventory (id, bikeid, bikemodel) values('{newGuid}', '{bikeId}', '{bikeModelId}')";
+
+            Exception error = ExecuteNonQuery(sql);
+
+            if (error != null)
+            {
+                throw error;
+            }
+            
+        }
         public static string GetRandomQuote()
         {
             string sql = "select quote from quotes";
