@@ -29,10 +29,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/25/2018 10:42:28</publishTime>
     </File>
     <File Include="bin/Bikeadelic.dll">
-      <publishTime>06/04/2019 22:21:57</publishTime>
+      <publishTime>06/08/2019 10:48:32</publishTime>
     </File>
     <File Include="bin/Bikeadelic.pdb">
-      <publishTime>06/04/2019 22:21:57</publishTime>
+      <publishTime>06/08/2019 10:48:32</publishTime>
     </File>
     <File Include="bin/Images/Logo.png">
       <publishTime>06/04/2019 20:37:33</publishTime>
@@ -209,16 +209,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/24/2018 14:38:24</publishTime>
     </File>
     <File Include="bin/SendEmail.dll">
-      <publishTime>06/04/2019 22:21:55</publishTime>
+      <publishTime>06/06/2019 19:06:03</publishTime>
     </File>
     <File Include="bin/SendEmail.pdb">
-      <publishTime>06/04/2019 22:21:55</publishTime>
+      <publishTime>06/06/2019 19:06:03</publishTime>
     </File>
     <File Include="bin/StrollAndRollDataAccess.dll">
-      <publishTime>06/04/2019 22:21:56</publishTime>
+      <publishTime>06/08/2019 10:32:14</publishTime>
     </File>
     <File Include="bin/StrollAndRollDataAccess.pdb">
-      <publishTime>06/04/2019 22:21:56</publishTime>
+      <publishTime>06/08/2019 10:32:14</publishTime>
     </File>
     <File Include="bin/System.AppContext.dll">
       <publishTime>01/12/2019 13:57:02</publishTime>
@@ -602,13 +602,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/04/2019 08:32:54</publishTime>
     </File>
     <File Include="Prices.aspx">
-      <publishTime>06/04/2019 20:08:46</publishTime>
+      <publishTime>06/06/2019 20:43:50</publishTime>
     </File>
     <File Include="Questionaire.aspx">
       <publishTime>05/13/2019 18:44:19</publishTime>
     </File>
     <File Include="Reserve.aspx">
-      <publishTime>05/30/2019 22:34:39</publishTime>
+      <publishTime>06/08/2019 10:47:25</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>04/22/2019 19:08:28</publishTime>
@@ -713,7 +713,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/22/2019 19:08:30</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/04/2019 22:22:42</publishTime>
+      <publishTime>06/07/2019 17:46:43</publishTime>
     </File>
   </ItemGroup>
 </Project>

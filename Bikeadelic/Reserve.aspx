@@ -25,48 +25,7 @@
             }
 
         }
-
-
-        var MakeReservation = function () {
-             
-            var dropoffLocation = document.getElementById("dropOffLocationTextArea").value;
-
-            var name = document.getElementById("Name").value;
-
-            var email = document.getElementById("Email").value;
-
-            var phoneNumber = document.getElementById("Phone").value;;
-              
-            $.ajax({
-                type: "POST",
-                async: true,
-                url: "Reserve.aspx/MakeReservation",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                data: JSON.stringify({
-                    inventoryGroups: InventoryGroups,
-                    dateSelection: selection,
-                    name: name,
-                    email: email,
-                    phoneNumber: phoneNumber,
-                    dropoffLocation: dropoffLocation
-                }),
-                success: function (result) {
-
-                    alert(result.d.Message);
-                     
-                    GetBikesAvailability();
-                },
-                failure: function (response) {
-
-                    alert(result.d.Message);
-
-                    GetBikesAvailability();
-                }
-            });
-
-
-        }
+         
         var InitializeDayPartSelection = function () {
 
              
@@ -150,20 +109,11 @@
             }
 
         }
-        var GetBikesAvailability = function () {
-              
-            var jSonDataDateSelection = selection.length > 0 ?
-                selection :
-                null;
-
-            var calendar = document.getElementById('calendar');
-             
-            var dropoffLocation = document.getElementById("dropOffLocationTextArea") != null ?
-                document.getElementById("dropOffLocationTextArea").value : null;
+        var GetBikeAvailabilityInfo = function () {
 
             var name = document.getElementById("Name") != null ?
                 document.getElementById("Name").value : null;
-                 
+
             var email = document.getElementById("Email") != null ?
                 document.getElementById("Email").value :
                 null;
@@ -171,24 +121,106 @@
             var phone = document.getElementById("Phone") != null ?
                 document.getElementById("Phone").value :
                 null;
+
+            var selectionOrNull = selection.length > 0 ?
+                selection :
+                null;
              
-            var json = JSON.stringify(
-                {
-                    inventoryGroups: InventoryGroups,
-                    name: name,
-                    email: email,
-                    phone: phone,
-                    dropoffLocation: dropoffLocation,
-                    startDate: calendar.firstDay,
-                    endDate: calendar.lastDay,
-                    dateSelection: jSonDataDateSelection
-                });
+            var dropoffLocation = document.getElementById("dropOffLocationTextArea") != null ?
+                document.getElementById("dropOffLocationTextArea").value : null;
+
+            var deliveryRequested = document.getElementById("deliveryOptionSelect") == null ?
+                false : document.getElementById("deliveryOptionSelect").value =='dropoff';
+
+            var data = JSON.stringify({
+                inventoryGroups: InventoryGroups,
+                dateSelection: selectionOrNull,
+                name: name,
+                email: email,
+                phone: phone,
+                deliveryRequested:deliveryRequested,
+                dropoffLocation: dropoffLocation,
+                startDate: calendar.firstDay,
+                endDate: calendar.lastDay
+            });
+
+            return data;
+
+        }
+        var homeAddress = "515 Cowan Street 80524 Fort Collins, CO";
+
+        var GetReservationInfo = function () {
+
+            var name = document.getElementById("Name") != null ?
+                document.getElementById("Name").value : null;
+
+            var email = document.getElementById("Email") != null ?
+                document.getElementById("Email").value :
+                null;
+
+            var phone = document.getElementById("Phone") != null ?
+                document.getElementById("Phone").value :
+                null;
+
+            var selectionOrNull = selection.length > 0 ?
+                selection :
+                null;
+             
+            var dropoffLocation = document.getElementById("dropOffLocationTextArea") != null ?
+                document.getElementById("dropOffLocationTextArea").value : null;
+
+            var deliveryRequested = document.getElementById("deliveryOptionSelect") != null ?
+                document.getElementById("deliveryOptionSelect").value =='dropoff' : null;
+             
+            var data = JSON.stringify({
+                inventoryGroups: InventoryGroups,
+                dateSelection: selectionOrNull,
+                name: name,
+                email: email,
+                phone: phone,
+                deliveryRequested: deliveryRequested,
+                dropoffLocation: dropoffLocation
+            });
+
+            return data;
+        }
+
+        var MakeReservation = function () {
+              
+            var data = GetReservationInfo();
 
             $.ajax({
                 type: "POST",
                 async: true,
+                url: "Reserve.aspx/MakeReservation",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: data,
+                success: function (result) {
+
+                    alert(result.d.Message);
+                     
+                    GetBikesAvailability();
+                },
+                failure: function (response) {
+
+                    alert(result.d.Message);
+
+                    GetBikesAvailability();
+                }
+            });
+
+
+        }
+        var GetBikesAvailability = function () {
+
+            var data = GetBikeAvailabilityInfo();
+             
+            $.ajax({
+                type: "POST",
+                async: true,
                 url: "Reserve.aspx/GetBikesAvailability",
-                data: json,
+                data: data,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (result) {
@@ -240,6 +272,8 @@
 
                     var selectDropDown = document.createElement('select');
 
+                    selectDropDown.id = "deliveryOptionSelect";
+
                     var optionPickup = document.createElement('option');
 
                     optionPickup.value = 'pickup';
@@ -260,19 +294,24 @@
 
                     var ApplyPickupDropoffSelection = function (selectDropDown) {
 
-                        var value = selectDropDown.selectedOptions[0].value;;
+                        var value = selectDropDown.selectedOptions[0].value;
 
                         var dropOffTextArea = document.getElementById('dropOffLocationTextArea');
 
                         if (value == 'pickup') {
-                            dropOffTextArea.value = "515 Cowan Street 80524 Fort Collins, CO";
+                            dropOffTextArea.value = homeAddress;
                             dropOffTextArea.disabled = true;
                         }
                         else if (value == 'dropoff') {
                             dropOffTextArea.value = "";
                             dropOffTextArea.disabled = false;
                         }
-
+                        if (result.d.DropoffLocation != null) {
+                            dropOffTextArea.value = result.d.DropoffLocation;
+                        }
+                        if (result.d.DeliveryRequested ==true) {
+                            selectDropDown.value = 'dropoff';
+                        }
                     }
 
                     selectDropDown.onchange = function () {
@@ -329,8 +368,7 @@
                     var emailCell = contactInfoRow.insertCell(-1);
 
                     emailCell.colSpan = '2';
-
-
+                    
                     var inputFieldEmail = document.createElement('input');
                     inputFieldEmail.id = 'Email';
                     inputFieldEmail.style = "padding: 1px; type='text' width: 100%";
@@ -416,6 +454,11 @@
 
                         return;
                     }
+                    if (result.d.DateSelection != null)
+                    {
+                        selection = result.d.DateSelection;
+                    }
+                     
                     for (var d = 0; d < calendar.dayCells.length; d++) {
 
                         var dateCell = calendar.dayCells[d];
@@ -423,7 +466,21 @@
                         dateCell.classList.remove("gradwhitered");
                         dateCell.classList.remove("gradredwhite");
                         dateCell.classList.remove("gradred");
+                        
+                        if (selection != null)
+                        {
+                            for (var s = 0; s < selection.length; s++)
+                            {
+                                var sel = selection[s];
 
+                                if (sel.date == dateCell.date)
+                                {
+                                    SelectDayPart(dateCell, selection.dayPart);
+                                }
+                             
+                            }
+                        }
+                         
                         dateCell.onclick = function () {
 
                             selectedDateCell = this;
@@ -444,32 +501,22 @@
                         }
                         else {
                             if (availability.AvailableDayPartString == 'None') {
+                                dateCell.classList.remove("gradgreen");
                                 dateCell.classList.add("gradred");
                             }
                             else if (availability.AvailableDayPartString == 'Morning') {
+                                dateCell.classList.remove("gradwhitegreen");
                                 dateCell.classList.add("gradwhitered");
                             }
                             else if (availability.AvailableDayPartString == 'Afternoon') {
-
+                                dateCell.classList.remove("gradgreenwhite");
                                 dateCell.classList.add("gradredwhite");
                             }
                         }
 
 
                     }
-                    /*
-                    for (var d = 0; d < result.d.AvailableDates.length; d++) {
-
-                        var dayCell = result.d.AvailableDates[d];
-
-                        var cellSelection = GetCellSelection(dayCell);
-
-                        if (cellSelection != null) {
-                            SelectDayPart(dayCell, cellSelection.dayPart);
-                        }
-
-                    }
-                    */
+                    
                 },
                 failure: function (response) {
 
@@ -540,7 +587,9 @@
 
         var SelectDayPart = function (dateCell, dayPart) {
 
-
+            if (dateCell == null) {
+                return;
+            }
             dateCell.classList.remove("gradgreenwhite");
             dateCell.classList.remove("gradwhitegreen");
             dateCell.classList.remove("gradgreen");

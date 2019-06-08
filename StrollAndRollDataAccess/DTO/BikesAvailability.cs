@@ -8,6 +8,8 @@ namespace StrollAndRollDataAccess
 {
     public class BikesAvailability
     {
+        public List<DateSelection> DateSelection { get; set; }
+
         public DisplayTime[] AvailableDates { get; set; }
 
         public InventoryGroup[] Inventory { get; set; }
@@ -21,7 +23,38 @@ namespace StrollAndRollDataAccess
         public string Email { get; set; }
 
         public string Phone { get; set; }
-         
+
+        public string DropoffLocation { get; set; }
+
+        public bool DeliveryRequested { get; set; }
+
+        public BikesAvailability(bool deliveryRequested,
+            string dropoffLocation,
+            List<DateSelection> dateSelection,
+            string name,
+            string email,
+            string phone)
+        {
+            DeliveryRequested = deliveryRequested;
+
+            DropoffLocation = dropoffLocation;
+
+            DateSelection = dateSelection;
+
+            if (name != null)
+            {
+                Name = name.ToString();
+            }
+            if (email != null)
+            {
+                Email = email.ToString();
+            }
+            if (phone != null)
+            {
+                Phone = phone.ToString();
+            }
+
+        }
 
     }
 }
