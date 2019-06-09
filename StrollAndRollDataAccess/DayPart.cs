@@ -11,6 +11,7 @@ namespace StrollAndRollDataAccess
         None,
         Morning,
         Afternoon,
-        Day
+        Day,
+        Class
     }
 }

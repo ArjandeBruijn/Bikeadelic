@@ -39,15 +39,18 @@
             document.getElementById('dayPartDay').style.visibility = 'visible';
             document.getElementById('dayPartAfternoon').style.visibility = 'visible';
             document.getElementById('dayPartMorning').style.visibility = 'visible';
-
+            document.getElementById('dayPartClass').style.visibility = 'visible';
+            
             document.getElementById('cbdayPartclear').checked = '';
             document.getElementById('cbdayPartAfternoon').checked = '';
             document.getElementById('cbdayPartDay').checked = '';
-            document.getElementById('dayPartMorning').checked = '';
-
+            document.getElementById('cbdayPartMorning').checked = '';
+            document.getElementById('cbdayPartClass').checked = '';
+            
             var dayAbbr = selectedDateCell.DayOfTheWeek;
 
             var isWeekDay = dayAbbr != 'Sat' && dayAbbr != 'Sun';
+            var isSaturday = dayAbbr == 'Sat';
 
             if (selectedDateCell != null) {
                 if (selectedDateCell.classList.contains('gradwhitered') ||
@@ -61,6 +64,9 @@
 
                     document.getElementById('dayPartAfternoon').style.visibility = 'collapse';
 
+                }
+                if (selectedDateCell.classList.contains('gradredwhite' || (isSaturday==false))) {
+                     document.getElementById('dayPartClass').style.visibility = 'collapse';
                 }
                 if (selectedDateCell.classList.contains('gradredwhite')
                     || isWeekDay) {
@@ -501,15 +507,13 @@
                         }
                         else {
                             if (availability.AvailableDayPartString == 'None') {
-                                dateCell.classList.remove("gradgreen");
                                 dateCell.classList.add("gradred");
                             }
                             else if (availability.AvailableDayPartString == 'Morning') {
-                                dateCell.classList.remove("gradwhitegreen");
                                 dateCell.classList.add("gradwhitered");
                             }
                             else if (availability.AvailableDayPartString == 'Afternoon') {
-                                dateCell.classList.remove("gradgreenwhite");
+
                                 dateCell.classList.add("gradredwhite");
                             }
                         }
@@ -590,11 +594,12 @@
             if (dateCell == null) {
                 return;
             }
+             
             dateCell.classList.remove("gradgreenwhite");
             dateCell.classList.remove("gradwhitegreen");
             dateCell.classList.remove("gradgreen");
 
-            if (dayPart == 'morning') {
+            if (dayPart == 'morning' || dayPart=='class') {
                 if (dateCell.classList.contains('gradwhitered')) {
 
                     dateCell.classList.remove('gradwhitered');
@@ -650,6 +655,11 @@
             <td>
                 <input id="cbdayPartMorning" name="dayPart" type="radio" onchange="SelectDayPartAddToCollection(selectedDateCell, 'morning')" /></td>
             <td>Morning (9:00 am to 2:00 pm)</td>
+        </tr>
+        <tr id="dayPartClass">
+            <td>
+                <input id="cbdayPartClass" name="dayPart" type="radio" onchange="SelectDayPartAddToCollection(selectedDateCell, 'class')" /></td>
+            <td>Class (9:00 am to 2:00 pm)</td>
         </tr>
         <tr id="dayPartAfternoon">
             <td>

@@ -345,7 +345,8 @@ namespace StrollAndRollDataAccess
                    bool isWeekend = dateSel.DateDayOfTheWeek == DayOfWeek.Saturday ||
                         dateSel.DateDayOfTheWeek == DayOfWeek.Sunday;
                      
-                    foreach (InventoryGroup desiredBike in desiredBikes)
+                    foreach (InventoryGroup desiredBike in desiredBikes
+                        .Where(desiredBike => desiredBike.Wanted>0))
                     {
                         BikePrices[] bikePricesValues
                             = bikeprices.Where(bike => bike.BikeId == desiredBike.BikeId).ToArray();
@@ -364,6 +365,10 @@ namespace StrollAndRollDataAccess
                         {
                             price.Rental += desiredBike.Wanted * Convert.ToDouble(bikePrices.DayWeekend.Replace("$", ""));
                         }
+                        else if (dateSel.DayPartEnum == DayPart.Class)
+                        {
+                            price.Rental += desiredBike.Wanted * Convert.ToDouble(bikePrices.Class.Replace("$", ""));
+                        }
                         else
                         {
                             price.Rental += desiredBike.Wanted * Convert.ToDouble(bikePrices.HalfDayWeekend.Replace("$", ""));
@@ -371,7 +376,7 @@ namespace StrollAndRollDataAccess
                     }
                     if (desiredBikes.Any(db => db.Wanted > 0))
                     {
-                        if (dropoffLocation.Contains("Fort Collins") || dropoffLocation.Contains("80524"))
+                        if (!dropoffLocation.Contains("515 Cowan Street 80524 Fort Collins, CO"))
                         {
                             price.Delivery += 25;
                         }
