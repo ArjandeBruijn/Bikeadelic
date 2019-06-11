@@ -114,6 +114,7 @@
     <Content Include="Bikes.aspx" />
     <Content Include="Calendar.aspx" />
     <Content Include="Calendar.js" />
+    <Content Include="Images\LeeMartinezPark.JPG" />
     <Content Include="Reserve.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />

@@ -359,15 +359,15 @@ namespace StrollAndRollDataAccess
 
                         if (isWeekend == false)
                         {
-                            price.Rental += desiredBike.Wanted * Convert.ToDouble(bikePrices.DayWeekDay.Replace("$", ""));
+                            price.Rental += desiredBike.Wanted * Convert.ToDouble(bikePrices.Evening.Replace("$", ""));
                         }
                         else if (dateSel.DayPartEnum == DayPart.Day)
                         {
                             price.Rental += desiredBike.Wanted * Convert.ToDouble(bikePrices.DayWeekend.Replace("$", ""));
                         }
-                        else if (dateSel.DayPartEnum == DayPart.Class)
+                        else if (dateSel.DayPartEnum == DayPart.Evening)
                         {
-                            price.Rental += desiredBike.Wanted * Convert.ToDouble(bikePrices.Class.Replace("$", ""));
+                            price.Rental += desiredBike.Wanted * Convert.ToDouble(bikePrices.Evening.Replace("$", ""));
                         }
                         else
                         {
@@ -507,7 +507,8 @@ namespace StrollAndRollDataAccess
                     {
                         {DayPart.Morning.ToString().ToLower(), "9.00AM" },
                         {DayPart.Afternoon.ToString().ToLower(), "2.00PM" },
-                         {DayPart.Day.ToString().ToLower(), "9.00AM" }
+                         {DayPart.Day.ToString().ToLower(), "9.00AM" },
+                          {DayPart.Evening.ToString().ToLower(), "4.00PM" }
                     }[dayPart];
                 }
 
@@ -787,10 +788,8 @@ namespace StrollAndRollDataAccess
 
                 bikePrices.DayWeekend = reader["DayWeekend"].ToString();
 
-                bikePrices.DayWeekDay = reader["DayWeekDay"].ToString();
-
-                bikePrices.Class = reader["Class"].ToString();
-
+                bikePrices.Evening = reader["Evening"].ToString();
+                 
                 return bikePrices;
             }
 

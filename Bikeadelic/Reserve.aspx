@@ -39,22 +39,24 @@
             document.getElementById('dayPartDay').style.visibility = 'visible';
             document.getElementById('dayPartAfternoon').style.visibility = 'visible';
             document.getElementById('dayPartMorning').style.visibility = 'visible';
-            document.getElementById('dayPartClass').style.visibility = 'visible';
+            document.getElementById('dayPartEvening').style.visibility = 'visible';
             
             document.getElementById('cbdayPartclear').checked = '';
             document.getElementById('cbdayPartAfternoon').checked = '';
             document.getElementById('cbdayPartDay').checked = '';
             document.getElementById('cbdayPartMorning').checked = '';
-            document.getElementById('cbdayPartClass').checked = '';
             
             var dayAbbr = selectedDateCell.DayOfTheWeek;
 
             var isWeekDay = dayAbbr != 'Sat' && dayAbbr != 'Sun';
-            var isSaturday = dayAbbr == 'Sat';
+
+            if (isWeekDay == false) {
+                document.getElementById('dayPartEvening').style.visibility = 'collapse';
+            }
 
             if (selectedDateCell != null) {
                 if (selectedDateCell.classList.contains('gradwhitered') ||
-                    selectedDateCell.classList.contains('gradredwhite')) {
+                    selectedDateCell.classList.contains('gradredwhite') || isWeekDay) {
 
                     document.getElementById('dayPartDay').style.visibility = 'collapse';
 
@@ -65,12 +67,9 @@
                     document.getElementById('dayPartAfternoon').style.visibility = 'collapse';
 
                 }
-                if (selectedDateCell.classList.contains('gradredwhite' || (isSaturday==false))) {
-                     document.getElementById('dayPartClass').style.visibility = 'collapse';
-                }
-                if (selectedDateCell.classList.contains('gradredwhite')
-                    || isWeekDay) {
-
+               
+                if (selectedDateCell.classList.contains('gradredwhite')|| isWeekDay) {
+                     
                     document.getElementById('dayPartMorning').style.visibility = 'collapse';
                 }
                 if (selectedDateCell.classList.contains('gradgreen')) {
@@ -563,6 +562,9 @@
 
         var SelectDayPartAddToCollection = function (dateCell, dayPart) {
 
+            if (dateCell == null) {
+                return;
+            }
 
             SelectDayPart(dateCell, dayPart);
 
@@ -611,7 +613,7 @@
                 }
 
             }
-            if (dayPart == 'afternoon') {
+            if (dayPart == 'afternoon' || dayPart == 'evening') {
 
                 if (dateCell.classList.contains('gradredwhite')) {
 
@@ -650,17 +652,17 @@
 
     <table class="centered_div" id="selectMorningAfternoon" style="background-color: gray; visibility: collapse">
 
-
+        <tr id="dayPartEvening">
+            <td>
+                <input id="cbdayPartEvening" name="dayPart" type="radio" onchange="SelectDayPartAddToCollection(selectedDateCell, 'evening')" /></td>
+            <td>Evening (4:00 pm to dusk)</td>
+        </tr>
         <tr id="dayPartMorning">
             <td>
                 <input id="cbdayPartMorning" name="dayPart" type="radio" onchange="SelectDayPartAddToCollection(selectedDateCell, 'morning')" /></td>
             <td>Morning (9:00 am to 2:00 pm)</td>
         </tr>
-        <tr id="dayPartClass">
-            <td>
-                <input id="cbdayPartClass" name="dayPart" type="radio" onchange="SelectDayPartAddToCollection(selectedDateCell, 'class')" /></td>
-            <td>Class (9:00 am to 2:00 pm)</td>
-        </tr>
+         
         <tr id="dayPartAfternoon">
             <td>
                 <input id="cbdayPartAfternoon" name="dayPart" type="radio" onchange="SelectDayPartAddToCollection(selectedDateCell,'afternoon')" /></td>

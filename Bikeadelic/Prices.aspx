@@ -45,7 +45,7 @@
 
                     var hdrDayWeekDay = hdrRow.insertCell(-1);
 
-                    hdrDayWeekDay.innerHTML = "Day";
+                    hdrDayWeekDay.innerHTML = "Evening";
 
                     var hdrHalfDay = hdrRow.insertCell(-1);
 
@@ -54,11 +54,7 @@
                     var hdrDay = hdrRow.insertCell(-1);
 
                     hdrDay.innerHTML = "Day";
-
-                    var hdrClass = hdrRow.insertCell(-1);
-
-                    hdrClass.innerHTML = "Class";
-
+                     
                     for (var i = 0; i < result.d.length; i++) {
 
                         var row = table.insertRow(-1);
@@ -69,9 +65,9 @@
 
                         nameCell.innerHTML = prices.BikeName;
 
-                        var dayWeekdayCell = row.insertCell();
+                        var eveningCell = row.insertCell();
 
-                        dayWeekdayCell.innerHTML = prices.DayWeekDay;
+                        eveningCell.innerHTML = prices.Evening;
 
                         var halfDayCell = row.insertCell();
 
@@ -80,11 +76,7 @@
                         var dayCell = row.insertCell();
 
                         dayCell.innerHTML = prices.DayWeekend;
-
-                        var dayClass = row.insertCell();
-
-                        dayClass.innerHTML = prices.Class;
-
+                         
                     }
 
 
@@ -107,20 +99,37 @@
 
             <table id="priceTable" class="columnBorderTable"></table>
 
-            <div>- Half day: 9:00 AM to 2:00 PM or 2:00 PM to 7:00 PM</div>
-            <div>- Day: 9:00 AM to 7:00 PM</div>
-            <div>- Class: instruction each Saturday from 9:00 AM to 10:00 AM in East Side Park, included 4 hours rental (10:00 AM to 2:00 PM)</div>
-        </div>
-        <div class="one50">
-
+            <div>- Evening: weekdays from 4:00 PM to dusk</div>
+            <div>- Half day: 9:00 AM to 2:00 PM or 2:00 PM to dusk</div>
+            <div>- Day: 9:00 AM to dusk</div>
+            
             <h2 >Delivery</h2>
 
             <div class="narrowOnLargeScreens">
                 We charge a $25 flat fee for delivery.
-         
-
+          
             </div>
 
+
+        </div>
+
+
+        <div class="one50">
+
+            
+            <h2 >Boneshaker lessons</h2>
+
+            <div >
+                It is a well kept secret that riding a boneshaker is really pretty easy. 
+                Most people will learn riding it within half an hour and spend just a bit more
+                on learning how to get on and off. We have a couple of tools to make the learning 
+                process a little easier for you. For example, we found that some people are helped 
+                by starting off with our mini-boneshaker that rides a lot like a full sized boneshaker 
+                but that has a break and allows you to reach the floor without jumping off. We will bring 
+                small benches to practice getting on and off as well. We will meet you in 
+                Lee Martinez park and practice with you for a maximum of an hour with each rental. 
+            </div>
+            <img  src="Images/LeeMartinezPark.JPG" />
         </div>
     </div>
 

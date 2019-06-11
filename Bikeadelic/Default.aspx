@@ -22,11 +22,12 @@
                     src="Images/FrontPageFamilyPicture.jpg" />
             </div>
              
-            Bikeadelics-rentals is an exciting new family business to rent out 
-                unconventional bikes.  We are based in Fort Collins but we will drop off 
-                the bikes you reserve online anywhere in Fort Collins.  
-                You can rent any combination of available bicycles or the whole fleet with 
-                trailer for a party or festival. 
+            Bikeadelics-rentals is an exciting new family business to rent out boneshakers 
+            and other unconventional bikes.  We are based in Fort Collins but we will drop off 
+            the bikes you reserve online anywhere in Fort Collins.  
+            You can rent any combination of available bicycles or the whole fleet with 
+            trailer for a party or festival. We offer free teaching with each rental of a boneshaker.
+            
         </div>
 
         <div class="one40">
