@@ -10,6 +10,13 @@ namespace SendEmail
 
         public static string MessageAtSuccessfullySentEmail = "Message Successfully Sent";
 
+        public static string SendToBikeadelics(string subject, string messageText)
+        {
+            string receiverAddress = "BikeadelicRentals@gmail.com";
+
+            return Send(receiverAddress, subject, messageText);
+        }
+
         public static string Send(string receiverAddress, string subject, string messageText)
         {
             try

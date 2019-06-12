@@ -82,7 +82,7 @@ namespace StrollAndRollDataAccess
 
                 if (error != null)
                 {
-                    EmailSender.Send("amgdebruijn@gmail.com", "error submitting queries", sql);
+                    EmailSender.SendToBikeadelics("error submitting queries", sql);
                 }
             }
 
@@ -491,7 +491,7 @@ namespace StrollAndRollDataAccess
 
             string renderedFullMessage = messageLines.Aggregate((i, j) => i + "\n" + j);
 
-            string msg1 = EmailSender.Send("amgdebruijn@gmail.com", $"Reservation", renderedFullMessage);
+            string msg1 = EmailSender.SendToBikeadelics($"Reservation", renderedFullMessage);
 
             if (msg1 == EmailSender.MessageAtSuccessfullySentEmail)
             {

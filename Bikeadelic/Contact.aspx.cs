@@ -27,9 +27,9 @@ namespace Bikeadelic
 
             string subject = $"Message from {firstName} {lastName} sent through contact page";
 
-            EmailSender.Send("amgdebruijn@gmail.com", subject, renderedFullMessage);
+            string returnMessage = EmailSender.SendToBikeadelics(subject, renderedFullMessage);
 
-            string returnMessage = $"Email successfully sent to {emailAddress}";
+            //string returnMessage = $"Email successfully sent to {emailAddress}";
 
             return returnMessage;
         }
