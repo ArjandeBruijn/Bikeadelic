@@ -585,7 +585,7 @@ namespace StrollAndRollDataAccess
 
             Appointment[] appointments = DatabaseOperations.GetAppointments();
               
-            while (runningDate < toDate)
+            while (runningDate <= toDate)
             { 
                 DayPart bikesAreAvailableDayPart = runningDate.Ticks > DateTime.Now.Ticks
                     ? DayPart.Day : DayPart.None;

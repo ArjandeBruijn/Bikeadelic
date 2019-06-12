@@ -262,12 +262,12 @@
 
                         var countCell = row.insertCell(-1);
 
-                        countCell.innerHTML = " <input style='padding: 1px;' id = " + inventoryGroup.BikeId + "_"+ inventoryGroup.ModelId +" type='number' value = " + inventoryGroup.Wanted + " min = 0 onchange= 'UpdateInventoryGroup(id, value); GetBikesAvailability();' max=" + inventoryGroup.Available + " />";
+                        countCell.innerHTML = " <input style='padding: 1px;' id = " + inventoryGroup.BikeId + "_" + inventoryGroup.ModelId + " type='number' value = " + inventoryGroup.Wanted + " min = 0  onchange= 'UpdateInventoryGroup(id, value); GetBikesAvailability();' max= "+inventoryGroup.Available+" />"; 
 
                         row.insertCell(-1);
                     }
                      
-                    var dropOffRow = table.insertRow(-1);
+                    var dropOffRow = table.insertRow(-1);   
 
                     var whereHdrCell = dropOffRow.insertCell(-1);
 
