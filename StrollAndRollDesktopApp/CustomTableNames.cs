@@ -14,5 +14,7 @@ namespace StrollAndRollDesktopApp
         public const string AddOrUpdateBikePrices = "UpdateBikePrices";
         public const string UpdateInventory = "UpdateInventory";
         public const string AppointmentsJoin = "JoinAppointments";
+        public const string RemoveQuestionaire = "RemoveQuestionaire";
+        
     }
 }

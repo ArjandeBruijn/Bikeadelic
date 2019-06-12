@@ -70,6 +70,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="RemoveQuestionaire.xaml.cs">
+      <DependentUpon>RemoveQuestionaire.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RemoveQuestionaireResultTableItem.cs" />
     <Compile Include="UpdateInventory.cs" />
     <Compile Include="UpdateBikePriceTabItem.cs" />
     <Compile Include="BikePriceUpdateControl.xaml.cs">
@@ -105,6 +109,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="RemoveQuestionaire.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ScrollAndRollDatabaseTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

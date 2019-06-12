@@ -11,7 +11,6 @@ namespace StrollAndRollDataAccess
         public const string QuestionaireAnswers = "QuestionaireAnswers";
         public const string QuestionaireAgeSelection = "QuestionaireAgeSelection";
         public const string QuestionaireBikePreferenceSelection = "QuestionaireBikePreferenceSelection";
-        public const string BikePreferences = "BikePreferences";
         public const string Bikebookings = "Bikebookings";
         public const string Appointments = "Appointments";
         public const string Bikes = "Bikes";

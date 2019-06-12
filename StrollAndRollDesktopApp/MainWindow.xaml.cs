@@ -41,7 +41,8 @@ namespace StrollAndRollDesktopApp
                 CustomTableNames.Constraints,
                 CustomTableNames.AddOrUpdateBikePrices,
                 CustomTableNames.AppointmentsJoin,
-                CustomTableNames.UpdateInventory
+                CustomTableNames.UpdateInventory,
+                CustomTableNames.RemoveQuestionaire
             });
              
             tableNames = tableNames.OrderBy(t => t).ToList();
@@ -51,9 +52,7 @@ namespace StrollAndRollDesktopApp
             selectTableTabItem.OnShowTableChanged += SelectTableTabItem_OnShowTableChanged;
 
             mainWindowTabControl.Items.Add(selectTableTabItem);
-                
-           
-             
+                 
         }
 
         private void SelectTableTabItem_OnShowTableChanged(object sender, IsSelectedByTable e)
@@ -73,32 +72,61 @@ namespace StrollAndRollDesktopApp
                 else if (tableName == CustomTableNames.InventoryGroupsJoin) {
 
                     tabItem = new TableTabItem(CustomTableNames.InventoryGroupsJoin, DatabaseOperations.InventorySelectSql);
-                     
+
                 }
                 else if (tableName == CustomTableNames.InventoryGroupsJoin)
                 {
 
                     tabItem = new TableTabItem(CustomTableNames.InventoryGroupsJoin, DatabaseOperations.InventorySelectSql);
-                     
+
                 }
                 else if (tableName == CustomTableNames.Constraints)
                 {
 
                     tabItem = new TableTabItem(CustomTableNames.Constraints, "SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS");
-                     
+
                 }
                 else if (tableName == CustomTableNames.QuestionaireJoin)
                 {
 
+                    string columnsToSelect = new string[]
+                    {
+                        $"{TableNames.QuestionaireAnswers}.id as QuestionaireId",
+                        ColumnNames.FavoritePlacesToHangOutAroundTown,
+                        ColumnNames.HowLikelyAreYouToRentAWeirdBike,
+                        ColumnNames.WhyWouldYouOrWouldntYouBeInterested,
+                        ColumnNames.AreOurPricesWithinYourBudget,
+                        ColumnNames.WhatDoYouDislikeAboutOurWebsite,
+                        ColumnNames.DeliverOrPickup,
+                        ColumnNames.WhereWouldYouLikeToRide,
+                        ColumnNames.HowManyHoursWouldYouLikeTheBike,
+                        ColumnNames.EmailAddress,
+                        ColumnNames.HowManyTimesAYearEmail,
+                        "Name as BikeName",
+                        "age0to1",
+                        "age2to5",
+                        "age6to10",
+                        "age11to15",
+                        "age16to20",
+                        "age21to35",
+                        "age36to50",
+                        "ageover51"
+                    }.Aggregate((i, j) => $"{i},{j}");
+
+                    //columnsToSelect = "*";
+
                     string joinQuestionaireAnswersSql =
-                    $"SELECT * FROM {TableNames.QuestionaireAnswers} left outer join " +
-                    $"{TableNames.QuestionaireAgeSelection} on {TableNames.QuestionaireAnswers}.{ColumnNames.Id}" +
-                    $"= {ColumnNames.QuestionaireId} left outer join { TableNames.BikePreferences} on  " +
-                    $"{ TableNames.BikePreferences}.{ColumnNames.QuestionaireId} = " +
-                    $"{ TableNames.BikePreferences}.{ColumnNames.Id}";
+
+                    $"SELECT {columnsToSelect}  FROM {TableNames.QuestionaireAnswers} left outer join { TableNames.QuestionaireBikePreferenceSelection} on  " +
+                    $"{ TableNames.QuestionaireBikePreferenceSelection}.{ColumnNames.QuestionaireId} = " +
+                    $"{ TableNames.QuestionaireBikePreferenceSelection}.{ColumnNames.QuestionaireId}" +
+                    $" inner join { TableNames.Bikes} b on b.id =  { TableNames.QuestionaireBikePreferenceSelection}.bikeid  " +
+                    " left outer join " +
+                    $"{TableNames.QuestionaireAgeSelection} a on {TableNames.QuestionaireAnswers}.{ColumnNames.Id}" +
+                    $"= a.{ColumnNames.QuestionaireId} ";
 
                     tabItem = new TableTabItem(CustomTableNames.QuestionaireJoin, joinQuestionaireAnswersSql);
-                     
+
                 }
                 else if (tableName == CustomTableNames.AddOrUpdateBikePrices)
                 {
@@ -109,7 +137,7 @@ namespace StrollAndRollDesktopApp
                     addOrUpdateBikePriceTabItem.BikePriceUpdated += UpdateData;
 
                     tabItem = addOrUpdateBikePriceTabItem;
-                    
+
                 }
                 else if (tableName == CustomTableNames.UpdateInventory)
                 {
@@ -117,11 +145,11 @@ namespace StrollAndRollDesktopApp
                     UpdateInventory updateInventoryPriceTabItem
                             = new UpdateInventory();
 
-                     
+
                     tabItem = updateInventoryPriceTabItem;
 
                 }
-                
+
 
                 else if (tableName == CustomTableNames.AppointmentsJoin)
                 {
@@ -132,11 +160,16 @@ namespace StrollAndRollDesktopApp
 
                     tabItem = new TableTabItem(CustomTableNames.AppointmentsJoin, joinQuestionaireAnswersSql);
                 }
+                else if (tableName == CustomTableNames.RemoveQuestionaire)
+                {
+                    tabItem = new RemoveQuestionaireResultTableItem();
 
+                }
                 mainWindowTabControl.Items.Add(tabItem);
 
 
             }
+            
             else {
 
                 TabItem item = mainWindowTabControl.Items.Cast<TabItem>().Single(tab => tab.Header.ToString() == e.TableName);

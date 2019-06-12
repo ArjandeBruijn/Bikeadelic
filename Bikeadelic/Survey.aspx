@@ -120,7 +120,7 @@
             <td>Where would you like to ride?
             </td>
             <td>
-                <select id="whereWouldYouLikeToRide">
+                <select onchange="ShowTextFieldWhereWouldYouLikeToRide()" id="whereWouldYouLikeToRide">
                     <option>Please select...</option>
                     <option>Bike trails</option>
                     <option>Old town</option>
@@ -129,6 +129,14 @@
                     <option>Parks</option>
                     <option>Other - please specify</option>
                 </select>
+            </td>
+        </tr>
+
+        <tr id="trAreaWhereToRide" style="display:none">
+            <td></td>
+            <td></td>
+            <td>
+                <textarea id="textAreaWhereToRide"  style="width:200px; height:100px" ></textarea>
             </td>
         </tr>
 
@@ -166,7 +174,7 @@
                     <tr>
                         <td>0-1</td>
                         <td>
-                            <input id = 'ageselectiontable0_1', style="min-width: 0%; width:50px" type="number" />
+                            <input min="0", id = 'ageselectiontable0_1', style="min-width: 0%; width:50px" type="number" />
                         </td>
                     </tr>
                     <tr>
@@ -247,6 +255,22 @@
 
     <script type="text/javascript">
 
+        var ShowTextFieldWhereWouldYouLikeToRide = function ()
+        {
+            var whereWouldYouLikeToRide = document.getElementById('whereWouldYouLikeToRide').value;
+
+            var element = document.getElementById('trAreaWhereToRide');
+
+            if (whereWouldYouLikeToRide == "Other - please specify") {
+
+                element.style.display = '';
+            }
+            else {
+                element.style.display = 'none';
+            }
+             
+        }
+
         var bikeCheckBoxIds = [];
 
         $(document).ready(function () {
@@ -267,7 +291,11 @@
                     var wrapDiv = null;
 
                     for (var b = 0; b < bikes.length; b++) {
-
+                         
+                        if (bikes[b].Name == 'Karbike') continue;
+                        if (bikes[b].Name == 'Burley Trailer') continue;
+                        if (bikes[b].Name == 'Mini Boneshaker') continue;
+                         
                         if (wrapDiv == null) {
 
                             wrapDiv = document.createElement("div");
@@ -369,6 +397,14 @@
 
             var whereWouldYouLikeToRide = document.getElementById('whereWouldYouLikeToRide').value;
 
+            if (whereWouldYouLikeToRide == "Other - please specify") {
+
+                var textAreaWhereWouldYouLikeToRide =
+                    document.getElementById('textAreaWhereToRide');
+
+                whereWouldYouLikeToRide = textAreaWhereWouldYouLikeToRide.value;
+            }
+             
             var howManyHoursWouldYouLikeTheBike = document.getElementById('howManyHoursWouldYouLikeTheBike').value;
 
             var emailAddress = document.getElementById('emailAddress').value;
@@ -446,7 +482,7 @@
             $.ajax({
                 type: "POST",
                 async: false,
-                url: "Questionaire.aspx/SubmitQuestionaire",
+                url: "Survey.aspx/SubmitQuestionaire",
                 data: jsonData,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",

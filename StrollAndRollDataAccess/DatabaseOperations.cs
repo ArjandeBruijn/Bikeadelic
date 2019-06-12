@@ -46,12 +46,21 @@ namespace StrollAndRollDataAccess
 
             void AddToSqlListIfPropHasValue(string tableName, string propertyName, string propertyValue)
             {
+                string EscapeApostrophe(string value)
+                {
+                    return value.Replace("'", " ");
+                }
+
                 if (!String.IsNullOrEmpty(propertyValue) && propertyValue != "Please select...")
                 {
-                    sqls.Add($"update {tableName }  set {propertyName}= '{propertyValue}'");
+                    sqls.Add($"update {tableName }  set {propertyName}= '{EscapeApostrophe(propertyValue)}'");
                 }
             }
-            AddToSqlListIfPropHasValue(TableNames.QuestionaireAnswers, nameof(FavoritePlacesToHangOutAroundTown), FavoritePlacesToHangOutAroundTown);
+
+            
+   
+
+            AddToSqlListIfPropHasValue(TableNames.QuestionaireAnswers, nameof(FavoritePlacesToHangOutAroundTown),  FavoritePlacesToHangOutAroundTown);
             AddToSqlListIfPropHasValue(TableNames.QuestionaireAnswers, nameof(HowLikelyAreYouToRentAWeirdBike), HowLikelyAreYouToRentAWeirdBike);
             AddToSqlListIfPropHasValue(TableNames.QuestionaireAnswers, nameof(WhyWouldYouOrWouldntYouBeInterested), WhyWouldYouOrWouldntYouBeInterested);
             AddToSqlListIfPropHasValue(TableNames.QuestionaireAnswers, nameof(AreOurPricesWithinYourBudget), AreOurPricesWithinYourBudget);
