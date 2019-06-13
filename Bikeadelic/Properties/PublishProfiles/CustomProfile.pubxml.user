@@ -29,10 +29,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/25/2018 10:42:28</publishTime>
     </File>
     <File Include="bin/Bikeadelic.dll">
-      <publishTime>06/12/2019 22:15:44</publishTime>
+      <publishTime>06/12/2019 22:58:29</publishTime>
     </File>
     <File Include="bin/Bikeadelic.pdb">
-      <publishTime>06/12/2019 22:15:44</publishTime>
+      <publishTime>06/12/2019 22:58:29</publishTime>
     </File>
     <File Include="bin/Images/Logo.png">
       <publishTime>06/12/2019 06:15:01</publishTime>
@@ -551,10 +551,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/22/2019 19:08:28</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>06/04/2019 19:48:58</publishTime>
+      <publishTime>06/12/2019 22:41:45</publishTime>
     </File>
     <File Include="Default.aspx">
-      <publishTime>06/12/2019 22:15:17</publishTime>
+      <publishTime>06/12/2019 22:55:00</publishTime>
     </File>
     <File Include="FAQ.aspx">
       <publishTime>05/05/2019 14:42:49</publishTime>
@@ -608,13 +608,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/04/2019 08:32:54</publishTime>
     </File>
     <File Include="Prices.aspx">
-      <publishTime>06/12/2019 22:08:28</publishTime>
+      <publishTime>06/12/2019 22:16:49</publishTime>
     </File>
     <File Include="Questionaire.aspx">
       <publishTime>05/13/2019 18:44:19</publishTime>
     </File>
     <File Include="Reserve.aspx">
-      <publishTime>06/12/2019 05:38:22</publishTime>
+      <publishTime>06/12/2019 22:57:23</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>04/22/2019 19:08:28</publishTime>

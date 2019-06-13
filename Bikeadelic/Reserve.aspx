@@ -425,25 +425,6 @@
 
                     pricesDeliveryRow.insertCell(-1);
                      
-                    var pricesDeliveryHdrCell = pricesDeliveryRow.insertCell(-1);
-
-                    pricesDeliveryHdrCell.innerHTML = 'Delivery';
-                     
-                    var pricesDeliveryCell = pricesDeliveryRow.insertCell(-1);
-
-                    pricesDeliveryCell.innerHTML = '$' +result.d.AppointmentPrices.Delivery;
-
-                    var pricesTotalRow = table.insertRow(-1);
-
-                    pricesTotalRow.insertCell(-1);
-
-                    var pricesTotalRowHdr = pricesTotalRow.insertCell(-1);
-
-                    pricesTotalRowHdr.innerHTML = 'Total';
-
-                    var pricesTotalCell = pricesTotalRow.insertCell(-1);
-
-                    pricesTotalCell.innerHTML = '$' + result.d.AppointmentPrices.Total;
                      
                     selectedDateCell = null;
 

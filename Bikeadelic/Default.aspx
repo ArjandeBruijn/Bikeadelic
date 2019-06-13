@@ -13,21 +13,53 @@
         <img class="logoImage" style="width: 50%; border: none;" src="Images/Logo.jpg" />
     </div>
 
-    <div class="wrap">
+    <table style="width: 100%; table-layout: fixed">
 
-        <div class="one40  " style="width: 60%; padding: 20px">
-
-            <div class="centered">
-
-                <img id ="FrontPagePhoto" style=" width: 60%; border: none;   margin: 0px"
-                    src="Images/FrontPageFamilyPicture.jpg" />
-            </div>
+        <tr>
+            <td style="width:40%"></td>
+            <td style="width:60%"></td>
              
-            Bikeadelics-rentals is a family business. 
-            
-            <br><br>
+        </tr>
 
-             <p style="font-family: Impact">Cosmo Quiz</p>
+        <tr>
+
+
+            <td style="background-color: white">
+                <img id="FrontPagePhoto" style="width: 100%; border: none; margin: 0px"
+                    src="Images/FrontPageFamilyPicture.jpg" />
+
+                Bikeadelics-rentals is a family business. 
+
+            </td>
+            <td style="padding-left:20px; background-color: white">
+
+                <h2>Boneshaker lessons</h2>
+
+                <div>
+                    Most people will learn to ride a boneshaker within half an hour and spend a bit more time
+                on learning how to get on and off. We have a couple of tools to make the learning 
+                process a little easier for you. For example, we found that some people are helped 
+                by starting off with our mini-boneshaker that rides a lot like a full sized boneshaker 
+                but that has a break and allows you to reach the floor without jumping off.
+                <br>
+                    <br>
+                    If available, you can use the mini-boneshakers without extra charge when you 
+                rent a full sized boneshaker.  
+                <br>
+                    <br>
+                    We will bring small benches to practice getting on and off as well. We will meet you in 
+                Lee Martinez park and practice with you for a maximum of an hour with each rental.
+                 
+                </div>
+                <img style="float:right; width: 70%" src="Images/LeeMartinezPark.JPG" />
+
+
+            </td>
+        </tr>
+        <tr>
+            <td style="column-span: 2">
+
+                <h2>Cosmo Quiz</h2>
 
             Are you:
 
@@ -49,31 +81,13 @@
                     (h) selfies are not advised when riding a bicycle, so this may not be for you.  
                     We would like both you and the bike to come back intact.  But maybe you 
                     could talk someone into taking your picture…
-        </div>
 
-        <div style="width:40%">
-             
-            <h2 >Boneshaker lessons</h2>
-
-            <div >
-                Most people will learn to ride a boneshaker within half an hour and spend a bit more time
-                on learning how to get on and off. We have a couple of tools to make the learning 
-                process a little easier for you. For example, we found that some people are helped 
-                by starting off with our mini-boneshaker that rides a lot like a full sized boneshaker 
-                but that has a break and allows you to reach the floor without jumping off.
-                <br><br>
-                If available, you can use the mini-boneshakers without extra charge when you 
-                rent a full sized boneshaker.  
-                <br><br>
-                We will bring small benches to practice getting on and off as well. We will meet you in 
-                Lee Martinez park and practice with you for a maximum of an hour with each rental.
+            </td>
+            <td>
                  
-            </div>
-            <img style="width:70%"  src="Images/LeeMartinezPark.JPG" />
-        </div>
-
-
-    </div>
+            </td>
+        </tr>
+    </table>
 
 
 
