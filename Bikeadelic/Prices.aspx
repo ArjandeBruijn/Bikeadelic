@@ -102,23 +102,12 @@
             <div>- Evening: weekdays from 4:00 PM to dusk</div>
             <div>- Half day: 9:00 AM to 2:00 PM or 2:00 PM to dusk</div>
             <div>- Day: 9:00 AM to dusk</div>
-            
-            <h2 >Delivery</h2>
-
-            
-
+             
 
         </div>
 
 
-        <div class="one50">
-<div class="narrowOnLargeScreens">
-                We charge a $25 flat fee for delivery.
-          
-            </div>
-            
-            
-        </div>
+        
     </div>
 
 
