@@ -4,35 +4,30 @@
 
 
     <div style="width: 100%; float: left;">
-        <h1 style="font-family: Jokerman; color: darkorange;">Welcome to our menagerie of mechanical mayhem!  We rent anything that's wheeled and weird...  
+        <h1 style="font-family: Jokerman; color: darkorange;">Welcome to our menagerie of mechanical mayhem! 
+            We rent out boneshakers and other weird bikes.
         </h1>
     </div>
 
     <div class="wrapper">
-        <img class="logoImage" style="width: 50%; border: none;" src="Images/Logo.png" />
+        <img class="logoImage" style="width: 50%; border: none;" src="Images/Logo.jpg" />
     </div>
 
     <div class="wrap">
 
-        <div class="two60 wrapper" style="width: 100%; padding: 20px">
+        <div class="one40  " style="width: 60%; padding: 20px">
 
             <div class="centered">
 
-                <img id ="FrontPagePhoto" style="border: none;   margin: 0px"
+                <img id ="FrontPagePhoto" style=" width: 60%; border: none;   margin: 0px"
                     src="Images/FrontPageFamilyPicture.jpg" />
             </div>
              
-            Bikeadelics-rentals is an exciting new family business to rent out boneshakers 
-            and other unconventional bikes.  We are based in Fort Collins but we will drop off 
-            the bikes you reserve online anywhere in Fort Collins.  
-            You can rent any combination of available bicycles or the whole fleet with 
-            trailer for a party or festival. We offer free teaching with each rental of a boneshaker.
+            Bikeadelics-rentals is a family business. 
             
-        </div>
+            <br><br>
 
-        <div class="one40">
-
-            <p style="font-family: Impact">Cosmo Quiz</p>
+             <p style="font-family: Impact">Cosmo Quiz</p>
 
             Are you:
 
@@ -54,7 +49,27 @@
                     (h) selfies are not advised when riding a bicycle, so this may not be for you.  
                     We would like both you and the bike to come back intact.  But maybe you 
                     could talk someone into taking your picture…
+        </div>
+
+        <div style="width:40%">
              
+            <h2 >Boneshaker lessons</h2>
+
+            <div >
+                Most people will learn to ride a boneshaker within half an hour and spend a bit more time
+                on learning how to get on and off. We have a couple of tools to make the learning 
+                process a little easier for you. For example, we found that some people are helped 
+                by starting off with our mini-boneshaker that rides a lot like a full sized boneshaker 
+                but that has a break and allows you to reach the floor without jumping off.
+                <br><br>
+                If available, you can use the mini-boneshakers without extra charge when you 
+                rent a full sized boneshaker.  
+                <br><br>
+                We will bring small benches to practice getting on and off as well. We will meet you in 
+                Lee Martinez park and practice with you for a maximum of an hour with each rental.
+                 
+            </div>
+            <img style="width:70%"  src="Images/LeeMartinezPark.JPG" />
         </div>
 
 

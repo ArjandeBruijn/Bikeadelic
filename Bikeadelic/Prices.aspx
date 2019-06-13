@@ -105,36 +105,19 @@
             
             <h2 >Delivery</h2>
 
-            <div class="narrowOnLargeScreens">
-                We charge a $25 flat fee for delivery.
-          
-            </div>
+            
 
 
         </div>
 
 
         <div class="one50">
-
-            
-            <h2 >Boneshaker lessons</h2>
-
-            <div >
-                It is a well kept secret that riding a boneshaker is really pretty easy. 
-                Most people will learn riding it within half an hour and spend just a bit more
-                on learning how to get on and off. We have a couple of tools to make the learning 
-                process a little easier for you. For example, we found that some people are helped 
-                by starting off with our mini-boneshaker that rides a lot like a full sized boneshaker 
-                but that has a break and allows you to reach the floor without jumping off.
-                <br><br>
-                If available, you can use the mini-boneshakers without extra charge when you 
-                rent a full sized boneshaker.  
-                <br><br>
-                We will bring small benches to practice getting on and off as well. We will meet you in 
-                Lee Martinez park and practice with you for a maximum of an hour with each rental.
-                 
+<div class="narrowOnLargeScreens">
+                We charge a $25 flat fee for delivery.
+          
             </div>
-            <img  src="Images/LeeMartinezPark.JPG" />
+            
+            
         </div>
     </div>
 
