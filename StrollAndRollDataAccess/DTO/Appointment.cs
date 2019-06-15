@@ -12,9 +12,16 @@ namespace StrollAndRollDataAccess
 
         public DateTime Date { get; set; }
 
-        public DayPart DayPart { get; set; }
+        public DayPartSelection.DayPart DayPart { get; set; }
 
         public List<BikeBooking> BikeBookings { get; set; }
+
+        public bool DayPartOverlaps(DayPartSelection.DayPart dayPart)
+        {
+            return dayPart == DayPartSelection.DayPart.Day ||
+                DayPart == DayPartSelection.DayPart.Day  ||
+                DayPart== dayPart;
+        }
 
         public override string ToString()
         {

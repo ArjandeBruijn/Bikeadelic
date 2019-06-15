@@ -18,9 +18,9 @@ namespace StrollAndRollDataAccess
 
         public int day { get; private set; }
 
-        public DayPart AvailableDayPart { get; private set; }
+        public DayPartSelection.DayPart[] AvailableDayParts { get; private set; }
 
-        public string AvailableDayPartString => AvailableDayPart.ToString();
+        public string AvailableDayPartString => String.Join("-", AvailableDayParts.Select(a=> a.ToString()));
 
         public bool IsOtherMonth { get; set; } = false;
 
@@ -41,10 +41,10 @@ namespace StrollAndRollDataAccess
         }
 
 
-        public DisplayTime(DateTime inDate, DayPart availableDayPart)
+        public DisplayTime(DateTime inDate, DayPartSelection.DayPart[] availableDayParts)
             : this(inDate)
         {
-            AvailableDayPart = availableDayPart;
+            AvailableDayParts = availableDayParts;
         }
     }
 }

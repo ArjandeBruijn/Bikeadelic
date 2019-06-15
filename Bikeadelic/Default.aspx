@@ -13,85 +13,83 @@
         <img class="logoImage" style="width: 50%; border: none;" src="Images/Logo.jpg" />
     </div>
 
-    <table style="width: 100%; table-layout: fixed">
 
-        <tr>
-            <td style="width:40%"></td>
-            <td style="width:60%"></td>
-             
-        </tr>
+    <div style="width: 100%;min-height: 750px; background-color: white">
 
-        <tr>
+        <span  style="display: inline; margin:10px; width: 30%; float: left; background-color: white">
+            <img id="FrontPagePhoto" style="border: none; margin: 0px"
+                src="Images/FrontPageFamilyPicture.jpg" />
+            Bikeadelics-rentals is a family business. 
+        </span>
 
-
-            <td style="background-color: white">
-                <img id="FrontPagePhoto" style="width: 100%; border: none; margin: 0px"
-                    src="Images/FrontPageFamilyPicture.jpg" />
-
-                Bikeadelics-rentals is a family business. 
-
-            </td>
-            <td style="padding-left:20px; background-color: white">
-
-                <h2>Boneshaker lessons</h2>
-
-                <div>
-                    Most people will learn to ride a boneshaker within half an hour and spend a bit more time
-                on learning how to get on and off. We have a couple of tools to make the learning 
-                process a little easier for you. For example, we found that some people are helped 
-                by starting off with our mini-boneshaker that rides a lot like a full sized boneshaker 
-                but that has a break and allows you to reach the floor without jumping off.
-                <br>
-                    <br>
-                    If available, you can use the mini-boneshakers without extra charge when you 
-                rent a full sized boneshaker.  
-                <br>
-                    <br>
-                    We will bring small benches to practice getting on and off as well. We will meet you in 
-                Lee Martinez park and practice with you for a maximum of an hour with each rental.
-                 
-                </div>
-                <img style="float:right; width: 70%" src="Images/LeeMartinezPark.JPG" />
-
-
-            </td>
-        </tr>
-        <tr>
-            <td style="column-span: 2">
-
-                <h2>Cosmo Quiz</h2>
+        <h2>Cosmo Quiz</h2>
 
             Are you:
 
-                <br>
 
-            <ol type="a">
-                <li>An on-the-go person?</li>
-                <li>Fun-loving?</li>
-                <li>The type who likes to challenge yourself?</li>
-                <li>The first of your friends to try the weirdest gadgets?</li>
-                <li>Wondering how to get girls/guys/non-binaries to notice you?</li>
-                <li>A non-conformist with a conformist bicycle? </li>
-                <li>Hoping to up your game for Tour de Fat with a bike so cool it doesn't need decorating?</li>
-                <li>Looking for awesome selfies?</li>
-            </ol>
+            a. An on-the-go person?<br>
+            b. Fun-loving?<br>
+            c. The type who likes to challenge yourself?<br>
+            d. The first of your friends to try the weirdest gadgets?<br>
+            e. Wondering how to get girls/guys/non-binaries to notice you?<br>
+            f. Hoping to up your game for Tour de Fat with a bike so cool it doesn't need decorating?<br>
+            g. Looking for awesome selfies?<br>
+            
 
-            Answers: 
+         
+        <br>
+        Answers: 
                      (a)-(g): you are perfect for trying out one of our bikes!
                     (h) selfies are not advised when riding a bicycle, so this may not be for you.  
                     We would like both you and the bike to come back intact.  But maybe you 
                     could talk someone into taking your picture…
 
-            </td>
-            <td>
-                 
-            </td>
-        </tr>
-    </table>
+       
+
+        <h2>Boneshaker lessons</h2>
+
+           Most people will learn to ride a boneshaker within half an hour and spend a bit more time
+                on learning how to get on and off.
+        
+        <span style="display: inline;  float: right; background-color: blue">
+           <img style="width:300px" src="Images/LeeMartinezPark.JPG" />
+        </span>
+        
+        
+        We have a couple of tools to make the learning 
+                process a little easier for you. 
+
+       <br>
+        <br>
+
+        
+
+
+            For example, we found that some people are helped 
+                by starting off with our mini-boneshaker that rides a lot like a full sized boneshaker 
+                but that has a break and allows you to reach the floor without jumping off.
+                
+                <br>
+            
+          <br>
+            If available, you can use the mini-boneshakers without extra charge when you 
+            rent a full sized boneshaker.We will bring small benches to practice getting on and off as well. We will meet you in 
+            Lee Martinez park and practice with you with each rental.
+
+   
+
+        
+
+      
+         
+        
+         
+
+    </div>
 
 
 
-    <div class="wrapper">
+    <div class="wrapper" style="width: 100%">
         <img id="centered" style="width: 100px" src="Images/Quote/Top.png" />
         <p id="quote" style="border-bottom: groove; border-top: groove"></p>
         <img style="width: 100px" src="Images/Quote/Bottom.png" />

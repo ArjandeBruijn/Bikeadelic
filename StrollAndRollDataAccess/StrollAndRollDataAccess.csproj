@@ -47,7 +47,6 @@
     <Compile Include="DayPart.cs" />
     <Compile Include="DisplayTime.cs" />
     <Compile Include="DTO\Appointment.cs" />
-    <Compile Include="DTO\AppointmentPrices.cs" />
     <Compile Include="DTO\Bike.cs" />
     <Compile Include="DTO\BikeBooking.cs" />
     <Compile Include="DTO\BikeModel.cs" />

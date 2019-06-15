@@ -8,13 +8,13 @@ namespace StrollAndRollDataAccess
 {
     public class BikesAvailability
     {
-        public List<DateSelection> DateSelection { get; set; }
+        public DateSelection DateSelection { get; set; }
 
         public DisplayTime[] AvailableDates { get; set; }
 
         public InventoryGroup[] Inventory { get; set; }
 
-        public AppointmentPrices AppointmentPrices { get; set; }
+        public double Price { get; set; }
 
         public string Message { get; set; }
 
@@ -23,22 +23,14 @@ namespace StrollAndRollDataAccess
         public string Email { get; set; }
 
         public string Phone { get; set; }
-
-        public string DropoffLocation { get; set; }
-
-        public bool DeliveryRequested { get; set; }
-
-        public BikesAvailability(bool deliveryRequested,
-            string dropoffLocation,
-            List<DateSelection> dateSelection,
+         
+        public BikesAvailability(
+            DateSelection dateSelection,
             string name,
             string email,
             string phone)
         {
-            DeliveryRequested = deliveryRequested;
-
-            DropoffLocation = dropoffLocation;
-
+              
             DateSelection = dateSelection;
 
             if (name != null)

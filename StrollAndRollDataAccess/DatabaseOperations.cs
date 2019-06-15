@@ -339,133 +339,106 @@ namespace StrollAndRollDataAccess
 
             return inventoryGroups.ToArray();
         }
-        public static AppointmentPrices GetPriceEstimateRental
+        public static double GetPriceEstimateRental
             (InventoryGroup[] desiredBikes,
-            string dropoffLocation, List<DateSelection> dateSelections)
+            DateSelection dateSelections)
         {
-            AppointmentPrices price = new AppointmentPrices();
-             
+            double price = 0;
+
             BikePrices[] bikeprices = DatabaseOperations.GetPrices();
 
-            if (dateSelections != null)
+            if (dateSelections != null && dateSelections.Date!=null)
             {
-                foreach (DateSelection dateSel in dateSelections)
-                {
-                   bool isWeekend = dateSel.DateDayOfTheWeek == DayOfWeek.Saturday ||
-                        dateSel.DateDayOfTheWeek == DayOfWeek.Sunday;
-                     
-                    foreach (InventoryGroup desiredBike in desiredBikes
-                        .Where(desiredBike => desiredBike.Wanted>0))
-                    {
-                        BikePrices[] bikePricesValues
-                            = bikeprices.Where(bike => bike.BikeId == desiredBike.BikeId).ToArray();
-                         
-                        if (bikePricesValues.Count() != 1)
-                        {
-                            throw new System.Exception("Unable to get bikeprice");
-                        }
-                        BikePrices bikePrices = bikePricesValues.Single();
+                bool isWeekend = dateSelections.DateDayOfTheWeek == DayOfWeek.Saturday ||
+                        dateSelections.DateDayOfTheWeek == DayOfWeek.Sunday;
 
-                        if (isWeekend == false)
-                        {
-                            price.Rental += desiredBike.Wanted * Convert.ToDouble(bikePrices.Evening.Replace("$", ""));
-                        }
-                        else if (dateSel.DayPartEnum == DayPart.Day)
-                        {
-                            price.Rental += desiredBike.Wanted * Convert.ToDouble(bikePrices.DayWeekend.Replace("$", ""));
-                        }
-                        else if (dateSel.DayPartEnum == DayPart.Evening)
-                        {
-                            price.Rental += desiredBike.Wanted * Convert.ToDouble(bikePrices.Evening.Replace("$", ""));
-                        }
-                        else
-                        {
-                            price.Rental += desiredBike.Wanted * Convert.ToDouble(bikePrices.HalfDayWeekend.Replace("$", ""));
-                        }
-                    }
-                    if (desiredBikes.Any(db => db.Wanted > 0))
+                foreach (InventoryGroup desiredBike in desiredBikes
+                    .Where(desiredBike => desiredBike.Wanted > 0))
+                {
+                    BikePrices[] bikePricesValues
+                        = bikeprices.Where(bike => bike.BikeId == desiredBike.BikeId).ToArray();
+
+                    if (bikePricesValues.Count() != 1)
                     {
-                        if (!dropoffLocation.Contains("515 Cowan Street 80524 Fort Collins, CO"))
-                        {
-                            price.Delivery += 25;
-                        }
+                        throw new System.Exception("Unable to get bikeprice");
                     }
-                    
+                    BikePrices bikePrices = bikePricesValues.Single();
+
+                    if (isWeekend == false)
+                    {
+                        price += desiredBike.Wanted * Convert.ToDouble(bikePrices.Evening.Replace("$", ""));
+                    }
+                    else if (dateSelections.DayPartEnum ==  DayPartSelection.DayPart.Day)
+                    {
+                        price += desiredBike.Wanted * Convert.ToDouble(bikePrices.DayWeekend.Replace("$", ""));
+                    }
+                    else if (dateSelections.DayPartEnum == DayPartSelection.DayPart.Evening)
+                    {
+                        price += desiredBike.Wanted * Convert.ToDouble(bikePrices.Evening.Replace("$", ""));
+                    }
+                    else
+                    {
+                        price += desiredBike.Wanted * Convert.ToDouble(bikePrices.HalfDayWeekend.Replace("$", ""));
+                    }
                 }
             }
-             
-            price.Total = price.Rental + price.Delivery;
-
+              
             return price;
         }
-        public static BikesAvailability MakeReservation(List<InventoryGroup> inventoryGroups,
+        public static string MakeReservation(List<InventoryGroup> inventoryGroups,
              string name,
             string email,
             string phoneNumber,
-            bool deliveryRequested,
-            string dropoffLocation,
-            List<DateSelection> dateSelection)
+            DateSelection dateSelection)
         {
-            BikesAvailability bikesAvailability 
-                = new BikesAvailability(deliveryRequested,dropoffLocation, dateSelection, name,
-                email, phoneNumber);
-
-            bikesAvailability.Message = "An unexpected error occured";
-             
-            if (string.IsNullOrEmpty(dropoffLocation))
+           
+            string message = "An unexpected error occured";
+              
+            if (string.IsNullOrEmpty(name.Trim()))
             {
-                bikesAvailability.Message = "Please enter dropoff location";
-                return bikesAvailability;
-            }
-            else if (string.IsNullOrEmpty(name.Trim()))
-            {
-                bikesAvailability.Message = "Please enter your name";
-                return bikesAvailability;
+                message = "Please enter your name";
+                return message;
             }
             else if (string.IsNullOrEmpty(email.Trim()))
             {
-                bikesAvailability.Message = "Please enter your email";
-                return bikesAvailability;
+                message = "Please enter your email";
+                return message;
             }
             else if (email.Trim().Count(c => c == '.') != 1 ||
                 email.Trim().Count(c => c == '@') != 1)
             {
-                bikesAvailability.Message = "Please enter a valid email address";
-                return bikesAvailability;
+                message = "Please enter a valid email address";
+                return message;
             }
             else if (string.IsNullOrEmpty(phoneNumber.Trim()))
             {
-                bikesAvailability.Message = "Please enter your phone number";
-                return bikesAvailability;
+                message = "Please enter your phone number";
+                return message;
             }
             else if (phoneNumber.Count(x => Char.IsDigit(x)) != 10 &&
                 phoneNumber.Count(x => Char.IsDigit(x)) != 7)
             {
-                bikesAvailability.Message = "Please enter a valid phone number. The form excepts 7 (Fort Collins number) or 10 digits";
-                return bikesAvailability;
+                message = "Please enter a valid phone number. The form excepts 7 (Fort Collins number) or 10 digits";
+                return message;
             }
-            else if (dateSelection == null || dateSelection.Any() == false)
+            else if (dateSelection == null)
             {
-                bikesAvailability.Message = "Please select at least one date";
-                return bikesAvailability;
+                message = "Please select at least one date";
+                return message;
             }
             else if (inventoryGroups.All(g => g.Wanted == 0))
             {
-                bikesAvailability.Message = "Please select some bikes";
-                return bikesAvailability;
+                message = "Please select some bikes";
+                return message;
             }
             string id = string.Empty;
 
-            foreach (DateSelection dateSelectionInstance in dateSelection)
-            {
+            id = DatabaseOperations.InsertAppointment
+                        (dateSelection, name.ToString(), email.ToString(), phoneNumber.ToString());
 
-                id = DatabaseOperations.InsertAppointment
-                        (dateSelectionInstance, dropoffLocation.ToString(), name.ToString(), email.ToString(), phoneNumber.ToString());
+            DatabaseOperations.AddBikeBookings(id, inventoryGroups);
 
-                DatabaseOperations.AddBikeBookings(id, inventoryGroups);
-
-            }
-            bikesAvailability.Message = "Booking was successfully entered into the database";
+            message = "Booking was successful";
 
             List<string> messageLines = new List<string>();
 
@@ -473,12 +446,8 @@ namespace StrollAndRollDataAccess
             messageLines.Add($"name: {name}");
             messageLines.Add($"email: {email}");
             messageLines.Add($"phone: {phoneNumber}");
-            messageLines.Add($"Drop off location: {dropoffLocation}");
 
-            foreach (DateSelection dateSelectionInstance in dateSelection)
-            {
-                messageLines.Add($"{dateSelectionInstance.Date} {dateSelectionInstance.DayPart}");
-            }
+            messageLines.Add($"{dateSelection.Date} {dateSelection.DayPart}");
 
             messageLines.Add($"Bikes:");
             foreach (InventoryGroup inventoryGroup in inventoryGroups)
@@ -495,9 +464,9 @@ namespace StrollAndRollDataAccess
 
             if (msg1 == EmailSender.MessageAtSuccessfullySentEmail)
             {
-                bikesAvailability.Message += $" Email successfully sent to bikeadelic";
+                message += $" Email successfully sent to bikeadelic";
             }
-            else bikesAvailability.Message += $" Unable to sent email to bikeadelic";
+            else message += $" Unable to sent email to bikeadelic";
 
             if (string.IsNullOrEmpty(email.ToString()) == false)
             {
@@ -506,30 +475,25 @@ namespace StrollAndRollDataAccess
                     .Select((kvpi, kvpj) => $"{ kvpi.Wanted}  { kvpi.Name}")
                     .Aggregate((i, j) => $"{i} and {j}");
 
-                string daySelectionPartMessage =
-                    dateSelection.Select(d => $"{d.Date} for the {d.DayPart}").
-                    Aggregate((i, j) => $"{i} and {j}");
-
+                string daySelectionPartMessage = $"{dateSelection.Date} for the {dateSelection.DayPart}";
+                 
                 string GetDropOffTimeByDayPart(string dayPart)
                 {
                     return new Dictionary<string, string>
                     {
-                        {DayPart.Morning.ToString().ToLower(), "9.00AM" },
-                        {DayPart.Afternoon.ToString().ToLower(), "2.00PM" },
-                         {DayPart.Day.ToString().ToLower(), "9.00AM" },
-                          {DayPart.Evening.ToString().ToLower(), "4.00PM" }
+                        {DayPartSelection.DayPart.Morning.ToString(), "9.00AM" },
+                        {DayPartSelection.DayPart.Afternoon.ToString(), "2.00PM" },
+                         {DayPartSelection.DayPart.Day.ToString(), "9.00AM" },
+                          {DayPartSelection.DayPart.Evening.ToString(), "4.00PM" }
                     }[dayPart];
                 }
 
-                string dropOffTimePartMessage
-                    = dateSelection.Select(d => d.DayPart)
-                    .Distinct().Select(daypart => $"{GetDropOffTimeByDayPart(daypart)} for the {daypart}")
-                    .Aggregate((i, j) => $"{i} and {j}");
-
+                string dropOffTimePartMessage= $"{GetDropOffTimeByDayPart(dateSelection.DayPart)} for the {dateSelection.DayPart}";
+                 
                 string customerMessage = $"Dear {name} \n\n" +
                     $"Thank you for your reservation of {rentedBikesMessagePart}. \n\n" +
                     $"We have you down for {daySelectionPartMessage}. \n\n" +
-                    $"We plan to drop the bikes off at {dropoffLocation} at {dropOffTimePartMessage}. \n\n" +
+                    $"We are looking forward to see you at {dropOffTimePartMessage}. \n\n" +
                     $"We will contact you at {email} or {phoneNumber} to confirm.\n\n" +
                     $"Thank you for your business and looking forward to meet you.\n\n" +
                     $"Arjan de Bruijn and Allison Shaw";
@@ -538,30 +502,27 @@ namespace StrollAndRollDataAccess
 
                 if (msg2 == EmailSender.MessageAtSuccessfullySentEmail)
                 {
-                    bikesAvailability.Message += $" Email successfully sent to {email.ToString()}";
+                    message += $" Email successfully sent to {email.ToString()}";
                 }
-                else bikesAvailability.Message += $" Unable to sent email to {email.ToString()}";
+                else message += $" Unable to sent email to {email.ToString()}";
             }
             else
             {
-                bikesAvailability.Message += " no email sent to customer, no address provided";
+                message += " no email sent to customer, no address provided";
             }
-            return bikesAvailability;
+            return message;
         }
         public static BikesAvailability
           GetBikesAvailability(List<InventoryGroup> inventoryGroups,
             string name,
             string email,
             string phone,
-            bool deliveryRequested,
-          string dropoffLocation,
           DateTime startDate,
           DateTime endDate,
-           List<DateSelection> dateSelection)
+           DateSelection dateSelection)
         {
             BikesAvailability bikesAvailability 
-                = new BikesAvailability(deliveryRequested,
-                dropoffLocation,
+                = new BikesAvailability(
                 dateSelection,
                 name,
                 email,
@@ -573,128 +534,48 @@ namespace StrollAndRollDataAccess
             DateTime runningDate = new DateTime(startDate.Ticks);
 
             DateTime toDate = new DateTime(endDate.Ticks);
-
-            DayPart[] dayParts
-                    = new DayPart[]
-                    { DayPart.Morning,
-                      DayPart.Afternoon,
-                      DayPart.Day
-                    };
-
+             
             bikesAvailability.Inventory = inventoryGroups?.ToArray() ?? GetInventory();
 
             Appointment[] appointments = DatabaseOperations.GetAppointments();
               
             while (runningDate <= toDate)
-            { 
-                DayPart bikesAreAvailableDayPart = runningDate.Ticks > DateTime.Now.Ticks
-                    ? DayPart.Day : DayPart.None;
+            {
+                List<DayPartSelection.DayPart> availableDayParts =
+                    new List<DayPartSelection.DayPart>(DayPartSelection.GetAvailableDayParts(runningDate));
                  
-                if (bikesAreAvailableDayPart != DayPart.None)
+                foreach (DayPartSelection.DayPart dayPart in DayPartSelection.AllDayParts)
                 {
-                    foreach (DayPart dayPart in dayParts)
-                    {
-                        InventoryGroup[] inventory = bikesAvailability.Inventory.Select(i => new InventoryGroup(i)).ToArray();
+                    Appointment[] appointmentsTodayAndDayPart =
+                    appointments.Where(appointment => appointment.Date.Ticks == runningDate.Ticks &&
+                     appointment.DayPartOverlaps(dayPart))
+                      .ToArray();
 
-                        Appointment[] appointmentsTodayAndDayPart =
-                        appointments.Where(appointment => appointment.Date.Ticks == runningDate.Ticks &&
-                         appointment.DayPart == dayPart)
+                    BikeBooking[] bikeBookings
+                        = appointmentsTodayAndDayPart.SelectMany(a => a.BikeBookings)
                         .ToArray();
-
-                        foreach (Appointment appointment in appointmentsTodayAndDayPart)
+                     
+                    InventoryGroup[] newInventoryGroups = bikesAvailability.Inventory.Select(i => new InventoryGroup(i)).ToArray();
+                     
+                    foreach (InventoryGroup inventoryGroup in newInventoryGroups)
+                    {
+                        BikeBooking[] overlappingBikeBookings =
+                            bikeBookings.Where(b => b.BikeId == inventoryGroup.BikeId &&
+                                 b.ModelId == inventoryGroup.ModelId).ToArray();
+                         
+                        foreach (BikeBooking overlappingBikeBooking in overlappingBikeBookings)
                         {
-                            foreach (BikeBooking booking in appointment.BikeBookings)
+                            inventoryGroup.Available--;
+
+                            if (inventoryGroup.Wanted > inventoryGroup.Available)
                             {
-                                 
-                                InventoryGroup[] matchingInventoryGroups
-                                    = inventory
-                                    .Where(i => i.BikeId == booking.BikeId &&
-                                    (booking.ModelId == null ||
-                                    i.ModelId == booking.ModelId)).ToArray();
-
-                                if (matchingInventoryGroups.Count() != 1)
-                                {
-                                    throw new System.Exception("Unable to determine inventory group");
-                                }
-                                else
-                                {
-                                    matchingInventoryGroups.Single().Available--;
-                                }
-                                 
+                                availableDayParts.Remove(dayPart);
                             }
-                        }
-                        if (bikesAvailability.Inventory != null)
-                        {
-                            List<InventoryGroup> requestedBikesNrById
-                                = bikesAvailability.Inventory
-                                   .Where(ig => ig.Wanted > 0)
-                                   .ToList();
-                                     
-                            foreach (InventoryGroup requestedBikeNrById in requestedBikesNrById)
-                            {
-                                InventoryGroup[] matchingInventoryGroups 
-                                    = inventory.Where(i => i.Name == requestedBikeNrById.Name &&
-                                    i.ModelId== requestedBikeNrById.ModelId)
-                                    .ToArray();
 
-                                if (matchingInventoryGroups.Count() != 1)
-                                {
-                                    throw new System.Exception("Unable to determine matching inventorygroup");
-                                }
-
-                                InventoryGroup inventoryGroup =  matchingInventoryGroups.Single();
-
-                                if (inventoryGroup.Available < requestedBikeNrById.Wanted)
-                                {
-                                    if (dayPart == DayPart.Morning)
-                                    {
-                                        if (bikesAreAvailableDayPart == DayPart.Day)
-                                        {
-                                            bikesAreAvailableDayPart = DayPart.Afternoon;
-                                        }
-                                        else if (bikesAreAvailableDayPart == DayPart.Morning)
-                                        {
-                                            bikesAreAvailableDayPart = DayPart.None;
-                                        }
-                                    }
-                                    else if (dayPart == DayPart.Afternoon)
-                                    {
-                                        if (bikesAreAvailableDayPart == DayPart.Day)
-                                        {
-                                            bikesAreAvailableDayPart = DayPart.Morning;
-                                        }
-                                        else if (bikesAreAvailableDayPart == DayPart.Afternoon)
-                                        {
-                                            bikesAreAvailableDayPart = DayPart.None;
-                                        }
-                                    }
-                                    else if (dayPart == DayPart.Day)
-                                    {
-                                        bikesAreAvailableDayPart = DayPart.None;
-                                    }
-
-                                    if (bikesAreAvailableDayPart == DayPart.None)
-                                    {
-                                        if (bikesAvailability.DateSelection != null)
-                                        {
-                                            DateSelection[] dateSelectionsToRemove =
-                                            bikesAvailability.DateSelection.Where(d => d.CSharpDayTime.Ticks == runningDate.Ticks)
-                                            .ToArray();
-
-                                            foreach (DateSelection dateSelectionToRemove in dateSelectionsToRemove)
-                                            {
-                                                bikesAvailability.DateSelection.Remove(dateSelectionToRemove);
-                                            }
-                                        }
-                                    }
-
-                                    break;
-                                }
-                            }
                         }
                     }
                 }
-                availableDates.Add(new DisplayTime(runningDate, bikesAreAvailableDayPart));
+                availableDates.Add(new DisplayTime(runningDate, availableDayParts.ToArray()));
 
                 runningDate = runningDate.AddDays(1);
             }
@@ -705,10 +586,9 @@ namespace StrollAndRollDataAccess
             {
                 bikesAvailability.Message = $"The bikes you want are not available in the timeframe you specified";
             }
-
-            bikesAvailability.AppointmentPrices 
-                = GetPriceEstimateRental(bikesAvailability.Inventory, dropoffLocation, dateSelection);
-
+            bikesAvailability.Price
+                    = GetPriceEstimateRental(bikesAvailability.Inventory, dateSelection);
+            
             return bikesAvailability;
         }
 
@@ -936,7 +816,7 @@ namespace StrollAndRollDataAccess
             }
         }
         public static string InsertAppointment(DateSelection dateSelectionInstance,
-              string dropoff, string name, string email, string phone)
+               string name, string email, string phone)
         {
             using (var conn = new SqlConnection(ConnectionString))
             {
@@ -944,7 +824,7 @@ namespace StrollAndRollDataAccess
 
                 string date = $"{dateSelectionInstance.CSharpDayTime.Month}/{dateSelectionInstance.CSharpDayTime.Day}/{dateSelectionInstance.CSharpDayTime.Year}";
 
-                string sqlString = $"insert into [dbo].[APPOINTMENTS] (id,date, name, dropofflocation, email, phone, daypart) values('{id}', '{date}','{name}', '{dropoff}', '{email}', '{phone}', '{dateSelectionInstance.DayPartEnum.ToString()}')";
+                string sqlString = $"insert into [dbo].[APPOINTMENTS] (id,date, name, email, phone, daypart) values('{id}', '{date}','{name}', '{email}', '{phone}', '{dateSelectionInstance.DayPartEnum.ToString()}')";
 
                 using (var command = new SqlCommand(sqlString, conn))
                 {
@@ -1026,8 +906,8 @@ namespace StrollAndRollDataAccess
 
                     string dayPartRead = reader["DayPart"].ToString();
 
-                    appointment.DayPart = Enum.GetValues(typeof(DayPart))
-                        .Cast<DayPart>()
+                    appointment.DayPart = 
+                        DayPartSelection.AllDayParts
                         .SingleOrDefault(dayPart => dayPart.ToString().ToUpper() == dayPartRead.ToUpper());
 
                     return appointment;

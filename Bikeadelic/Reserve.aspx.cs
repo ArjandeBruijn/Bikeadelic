@@ -32,55 +32,53 @@ namespace Bikeadelic
 
         [WebMethod]
         public static BikesAvailability
-           GetBikesAvailability(List<InventoryGroup> inventoryGroups,
-            List<DateSelection> dateSelection,
+           GetBikesAvailability(
+            bool makeReservation,
+            List<InventoryGroup> inventoryGroups,
+            string selectedDate,
+            string selectedDayPart,
             string name,
             string email,
             string phone,
-            bool deliveryRequested,
-            string dropoffLocation,
-           string startDate,
-           string endDate
+            string startDate,
+            string endDate
            )
         {
             DateTime startD = GetDateFromJavaScriptDate(startDate);
 
             DateTime endD = GetDateFromJavaScriptDate(endDate);
 
+            DateSelection dateSelection = null;
+
+            if (selectedDate != null && selectedDayPart != null)
+            {
+                dateSelection= new DateSelection()
+                {
+                    DayPart= selectedDayPart,
+                    Date = selectedDate  
+                };
+            }
+            string message  = null;
+
+            if (makeReservation)
+            {
+                message = DatabaseOperations.MakeReservation(inventoryGroups, name, email, phone, dateSelection);
+
+                inventoryGroups.ForEach(i => i.Wanted = 0);
+            }
+
+            
+
             BikesAvailability bikesAvailability =
                 DatabaseOperations.GetBikesAvailability(inventoryGroups,
-                name, email, phone, deliveryRequested, dropoffLocation,
-                    startD, endD, dateSelection);
+                name, email, phone,  startD, endD, dateSelection);
+
+            bikesAvailability.Message = message;
 
             return bikesAvailability;
 
         }
-       
-        [WebMethod]
-        public static BikesAvailability MakeReservation(
-            List<InventoryGroup> inventoryGroups,
-            List<DateSelection> dateSelection,
-             string name,
-            string email,
-            string phone,
-            bool deliveryRequested,
-            string dropoffLocation
-           )
-        {
-            BikesAvailability bikesAvailability 
-                = DatabaseOperations.MakeReservation(inventoryGroups,
-              name,
-             email,
-             phone,
-             deliveryRequested,
-             dropoffLocation,
-             dateSelection);
-
-            return bikesAvailability;
-        }
-
         
-
         private static List<string> GetRequestedBikesAsFlatList(Dictionary<string, int> requestedBikesDict)
         {
             List<string> requestedBikesList = new List<string>();

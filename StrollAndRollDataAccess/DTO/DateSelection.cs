@@ -11,10 +11,10 @@ namespace StrollAndRollDataAccess
         public string DayPart { get; set; }
         public string Date { get; set; }
 
-        public DayPart DayPartEnum =>
-            Enum.GetValues(typeof(DayPart)).Cast<DayPart>()
-                        .Single(d=> d.ToString().ToLower()== DayPart.ToLower());
-
+        public DayPartSelection.DayPart DayPartEnum
+            => DayPartSelection.GetDayPart(DayPart);
+         
+         
         public int Year
         {
             get
