@@ -19,7 +19,7 @@
         <span  style="display: inline; margin:10px; width: 30%; float: left; background-color: white">
             <img id="FrontPagePhoto" style="border: none; margin: 0px"
                 src="Images/FrontPageFamilyPicture.jpg" />
-            Bikeadelics-rentals is a family business. 
+            Bikeadelic-rentals is a family business. 
         </span>
 
         <h2>Cosmo Quiz</h2>
@@ -46,7 +46,7 @@
 
        
 
-        <h2>Boneshaker lessons</h2>
+        <h2>Learn to ride a boneshaker</h2>
 
            Most people will learn to ride a boneshaker within half an hour and spend a bit more time
                 on learning how to get on and off.
