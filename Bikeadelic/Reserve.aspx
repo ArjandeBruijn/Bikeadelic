@@ -121,6 +121,10 @@
                 dataType: "json",
                 success: function (result) {
 
+                    if (makeReservation) {
+                        selectedDateCell = null;
+                    }
+
                     var table = document.getElementById("informationAndPreferencesTable");
 
                     table.innerHTML = '';
@@ -225,8 +229,7 @@
                     }
 
                     phoneCell.appendChild(inputFieldPhone);
-
-
+                     
                     var pricesRentalRow = table.insertRow(-1);
 
                     var pricesRowHdr = pricesRentalRow.insertCell(-1);
@@ -246,25 +249,13 @@
                     pricesDeliveryRow.insertCell(-1);
                       
                     var calendar = document.getElementById('calendar');
-
-                    if (result.d.Message != null) {
-
-                        var headerRow = calendar.insertRow(-1);
-
-                        var selectHdrCell = headerRow.insertCell(-1)
-
-                        selectHdrCell.innerHTML = result.d.Message;
-
-                        return;
-                    }
-                    
+                     
                     for (var d = 0; d < calendar.dayCells.length; d++) {
 
                         var dateCell = calendar.dayCells[d];
                          
                         dateCell.onclick = function () {
-
-                            
+                             
                             selectedDateCell = this;
                              
                             InitializeDayPartSelection();
@@ -285,13 +276,14 @@
                         }
                         else {
                             SetDateCellColor(dateCell);
-
-                            
                         }
-
-
+                         
                     }
+                    if (result.d.Message != null) {
 
+                        alert(result.d.Message);
+                         
+                    }
                 },
                 failure: function (response) {
 

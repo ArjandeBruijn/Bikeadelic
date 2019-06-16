@@ -475,7 +475,7 @@ namespace StrollAndRollDataAccess
                     .Select((kvpi, kvpj) => $"{ kvpi.Wanted}  { kvpi.Name}")
                     .Aggregate((i, j) => $"{i} and {j}");
 
-                string daySelectionPartMessage = $"{dateSelection.Date} for the {dateSelection.DayPart}";
+                string daySelectionPartMessage = $"{dateSelection.Date}";
                  
                 string GetDropOffTimeByDayPart(string dayPart)
                 {
@@ -488,12 +488,12 @@ namespace StrollAndRollDataAccess
                     }[dayPart];
                 }
 
-                string dropOffTimePartMessage= $"{GetDropOffTimeByDayPart(dateSelection.DayPart)} for the {dateSelection.DayPart}";
+                string dropOffTimePartMessage= $"{GetDropOffTimeByDayPart(dateSelection.DayPart)}";
                  
                 string customerMessage = $"Dear {name} \n\n" +
                     $"Thank you for your reservation of {rentedBikesMessagePart}. \n\n" +
                     $"We have you down for {daySelectionPartMessage}. \n\n" +
-                    $"We are looking forward to see you at {dropOffTimePartMessage}. \n\n" +
+                    $"We are looking forward to see you at {dropOffTimePartMessage} at Lee Martinez park. \n\n" +
                     $"We will contact you at {email} or {phoneNumber} to confirm.\n\n" +
                     $"Thank you for your business and looking forward to meet you.\n\n" +
                     $"Arjan de Bruijn and Allison Shaw";
