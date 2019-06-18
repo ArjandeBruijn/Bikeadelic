@@ -354,10 +354,10 @@
             }
             else if (dateCell.AvailableDayPartString.includes('Morning')) {
                 if (isSelectedDateCell) {
-                    dateCell.classList.add("gradgreenwhite")
+                    dateCell.classList.add("gradgreenred")
                 }
                 else {
-                    dateCell.classList.add("gradgreenred");
+                    dateCell.classList.add("gradwhitered");
                 }
             }
             else if (dateCell.AvailableDayPartString.includes('Afternoon') ||
