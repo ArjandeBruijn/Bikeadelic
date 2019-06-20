@@ -14,7 +14,7 @@ namespace StrollAndRollDataAccess
 
         public InventoryGroup[] Inventory { get; set; }
 
-        public double Price { get; set; }
+        public BillingCost BillingCost { get; set; }
 
         public string Message { get; set; }
 

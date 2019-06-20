@@ -242,11 +242,32 @@
 
                     var pricesRentalCell = pricesRentalRow.insertCell(-1);
 
-                    pricesRentalCell.innerHTML = '$' + result.d.Price;
+                    pricesRentalCell.innerHTML = '$' + result.d.BillingCost.Price;
 
-                    var pricesDeliveryRow = table.insertRow(-1);
+                    var pricesTaxRow = table.insertRow(-1);
 
-                    pricesDeliveryRow.insertCell(-1);
+                    pricesTaxRow.insertCell(-1);
+
+                    var taxHdrCell = pricesTaxRow.insertCell(-1);
+
+                    taxHdrCell.innerHTML = "Tax";
+
+                    var taxCell = pricesTaxRow.insertCell(-1);
+
+                    taxCell.innerHTML = '$' + result.d.BillingCost.Tax;
+                     
+                    var pricesTotalRow = table.insertRow(-1);
+
+                    pricesTotalRow.insertCell(-1);
+
+                    var totalHdrCell = pricesTotalRow.insertCell(-1);
+
+                    totalHdrCell.innerHTML = "Total";
+
+                    var totalCell = pricesTotalRow.insertCell(-1);
+
+                    totalCell.innerHTML = '$' + (result.d.BillingCost.Tax + result.d.BillingCost.Price);
+
                       
                     var calendar = document.getElementById('calendar');
                      

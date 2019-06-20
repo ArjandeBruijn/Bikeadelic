@@ -22,16 +22,13 @@
             Bikeadelic-rentals is a family business. 
         </span>
 
-        <h2>Cosmo Quiz</h2>
-
-            Are you:
-
-
+        <h2>Are you:</h2>
+         
             a. An on-the-go person?<br>
             b. Fun-loving?<br>
             c. The type who likes to challenge yourself?<br>
             d. The first of your friends to try the weirdest gadgets?<br>
-            e. Wondering how to get girls/guys/non-binaries to notice you?<br>
+            e. Looking for a team building exercise?<br>
             f. Hoping to up your game for Tour de Fat with a bike so cool it doesn't need decorating?<br>
             g. Looking for awesome selfies?<br>
             

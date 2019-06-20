@@ -3,17 +3,23 @@ using System.Net;
 using System.Net.Mail;
 namespace SendEmail
 {
-    public static class EmailSender
+    public class EmailSender
     {
         static string mailHost = "mail.bikeadelic-rentals.com";
         static string postMasterAddress = "postmaster@bikeadelic-rentals.com";
 
         public static string MessageAtSuccessfullySentEmail = "Message Successfully Sent";
 
-        public static string SendToBikeadelics(string subject, string messageText)
-        {
-            string receiverAddress = "BikeadelicRentals@gmail.com";
+        string receiverAddress;
 
+        public EmailSender(string receiverAddress)
+        {
+            this.receiverAddress = receiverAddress;
+        }
+
+        public string SendToBikeadelics(string subject, string messageText)
+        {
+              
             return Send(receiverAddress, subject, messageText);
         }
 

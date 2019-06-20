@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Web.Services;
 using System.Web.UI;
+using StrollAndRollDataAccess;
+
 namespace Bikeadelic
 {
     public partial class Contact : Page
@@ -27,7 +29,9 @@ namespace Bikeadelic
 
             string subject = $"Message from {firstName} {lastName} sent through contact page";
 
-            string returnMessage = EmailSender.SendToBikeadelics(subject, renderedFullMessage);
+            string companyEmail = StrollAndRollDataAccess.DatabaseOperations.GetCompanyEmailAddress();
+
+            string returnMessage = new EmailSender(companyEmail).SendToBikeadelics(subject, renderedFullMessage);
 
             //string returnMessage = $"Email successfully sent to {emailAddress}";
 

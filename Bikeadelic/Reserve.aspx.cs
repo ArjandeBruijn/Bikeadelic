@@ -34,7 +34,7 @@ namespace Bikeadelic
         public static BikesAvailability
            GetBikesAvailability(
             bool makeReservation,
-            List<InventoryGroup> inventoryGroups,
+            InventoryGroup[] inventoryGroups,
             string selectedDate,
             string selectedDayPart,
             string name,
@@ -64,7 +64,11 @@ namespace Bikeadelic
             {
                 message = DatabaseOperations.MakeReservation(inventoryGroups, name, email, phone, dateSelection);
 
-                inventoryGroups.ForEach(i => i.Wanted = 0);
+                foreach (InventoryGroup group in inventoryGroups)
+                {
+                    group.Wanted = 0;
+                }
+                
             }
 
             

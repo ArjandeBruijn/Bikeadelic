@@ -52,6 +52,7 @@
     <Compile Include="DTO\BikeModel.cs" />
     <Compile Include="DTO\BikePrices.cs" />
     <Compile Include="DTO\BikesAvailability.cs" />
+    <Compile Include="DTO\BillingCost.cs" />
     <Compile Include="DTO\DateSelection.cs" />
     <Compile Include="DTO\Faq.cs" />
     <Compile Include="DTO\InventoryGroup.cs" />

@@ -82,7 +82,11 @@ namespace StrollAndRollDataAccess
 
                 if (error != null)
                 {
-                    EmailSender.SendToBikeadelics("error submitting queries", sql);
+                    string email = GetCompanyEmailAddress();
+
+                    EmailSender emailSender = new EmailSender(email);
+
+                    emailSender.SendToBikeadelics("error submitting queries", sql);
                 }
             }
 
@@ -339,12 +343,28 @@ namespace StrollAndRollDataAccess
 
             return inventoryGroups.ToArray();
         }
-        public static double GetPriceEstimateRental
+        
+        public static string GetCompanyEmailAddress()
+        {
+            return GetParameterValue("companyEmailAddress");
+        }
+        private static string GetParameterValue(string parameterName)
+        {
+            string sql = $"select value from parameters where name ='{parameterName}'";
+
+            string[] values = GetItems(sql, (SqlDataReader reader) => { return reader["value"].ToString(); });
+
+            return values.Single();
+        }
+        public static BillingCost GetPriceEstimateRental
             (InventoryGroup[] desiredBikes,
             DateSelection dateSelections)
         {
-            double price = 0;
+            
+            double taxPercentage = Convert.ToDouble(GetParameterValue("taxPercentage"));
 
+            BillingCost billingCost = new BillingCost();
+             
             BikePrices[] bikeprices = DatabaseOperations.GetPrices();
 
             if (dateSelections != null && dateSelections.Date!=null)
@@ -366,26 +386,28 @@ namespace StrollAndRollDataAccess
 
                     if (isWeekend == false)
                     {
-                        price += desiredBike.Wanted * Convert.ToDouble(bikePrices.Evening.Replace("$", ""));
+                        billingCost.Price += desiredBike.Wanted * Convert.ToDouble(bikePrices.Evening.Replace("$", ""));
                     }
                     else if (dateSelections.DayPartEnum ==  DayPartSelection.DayPart.Day)
                     {
-                        price += desiredBike.Wanted * Convert.ToDouble(bikePrices.DayWeekend.Replace("$", ""));
+                        billingCost.Price += desiredBike.Wanted * Convert.ToDouble(bikePrices.DayWeekend.Replace("$", ""));
                     }
                     else if (dateSelections.DayPartEnum == DayPartSelection.DayPart.Evening)
                     {
-                        price += desiredBike.Wanted * Convert.ToDouble(bikePrices.Evening.Replace("$", ""));
+                        billingCost.Price += desiredBike.Wanted * Convert.ToDouble(bikePrices.Evening.Replace("$", ""));
                     }
                     else
                     {
-                        price += desiredBike.Wanted * Convert.ToDouble(bikePrices.HalfDayWeekend.Replace("$", ""));
+                        billingCost.Price += desiredBike.Wanted * Convert.ToDouble(bikePrices.HalfDayWeekend.Replace("$", ""));
                     }
                 }
             }
-              
-            return price;
+
+            billingCost.Tax = taxPercentage * billingCost.Price;
+
+            return billingCost;
         }
-        public static string MakeReservation(List<InventoryGroup> inventoryGroups,
+        public static string MakeReservation(InventoryGroup[] inventoryGroups,
              string name,
             string email,
             string phoneNumber,
@@ -433,8 +455,12 @@ namespace StrollAndRollDataAccess
             }
             string id = string.Empty;
 
+            BillingCost billingCost = GetPriceEstimateRental(inventoryGroups, dateSelection);
+
             id = DatabaseOperations.InsertAppointment
                         (dateSelection, name.ToString(), email.ToString(), phoneNumber.ToString());
+
+            
 
             DatabaseOperations.AddBikeBookings(id, inventoryGroups);
 
@@ -446,7 +472,7 @@ namespace StrollAndRollDataAccess
             messageLines.Add($"name: {name}");
             messageLines.Add($"email: {email}");
             messageLines.Add($"phone: {phoneNumber}");
-
+            messageLines.Add($"price (incl tax): {billingCost.Price+ billingCost.Tax}");
             messageLines.Add($"{dateSelection.Date} {dateSelection.DayPart}");
 
             messageLines.Add($"Bikes:");
@@ -460,7 +486,9 @@ namespace StrollAndRollDataAccess
 
             string renderedFullMessage = messageLines.Aggregate((i, j) => i + "\n" + j);
 
-            string msg1 = EmailSender.SendToBikeadelics($"Reservation", renderedFullMessage);
+            string companyEmail = GetCompanyEmailAddress();
+
+            string msg1 = new EmailSender(companyEmail).SendToBikeadelics($"Reservation", renderedFullMessage);
 
             if (msg1 == EmailSender.MessageAtSuccessfullySentEmail)
             {
@@ -494,6 +522,7 @@ namespace StrollAndRollDataAccess
                     $"Thank you for your reservation of {rentedBikesMessagePart}. \n\n" +
                     $"We have you down for {daySelectionPartMessage}. \n\n" +
                     $"We are looking forward to see you at {dropOffTimePartMessage} at Lee Martinez park. \n\n" +
+                    $"Please have cash payment of ${billingCost.Price} + tax ${billingCost.Tax} = ${billingCost.Price + billingCost.Tax} ready when you meet us there \n\n"+
                     $"We will contact you at {email} or {phoneNumber} to confirm.\n\n" +
                     $"Thank you for your business and looking forward to meet you.\n\n" +
                     $"Arjan de Bruijn and Allison Shaw";
@@ -513,7 +542,7 @@ namespace StrollAndRollDataAccess
             return message;
         }
         public static BikesAvailability
-          GetBikesAvailability(List<InventoryGroup> inventoryGroups,
+          GetBikesAvailability(InventoryGroup[] inventoryGroups,
             string name,
             string email,
             string phone,
@@ -586,7 +615,7 @@ namespace StrollAndRollDataAccess
             {
                 bikesAvailability.Message = $"The bikes you want are not available in the timeframe you specified";
             }
-            bikesAvailability.Price
+            bikesAvailability.BillingCost
                     = GetPriceEstimateRental(bikesAvailability.Inventory, dateSelection);
             
             return bikesAvailability;
@@ -782,7 +811,7 @@ namespace StrollAndRollDataAccess
 
 
         public static void AddBikeBookings
-            (string AppointmentId, List<InventoryGroup> inventoryGroups)
+            (string AppointmentId, InventoryGroup[] inventoryGroups)
         {
             Bike[] bikes = GetBikes();
 
