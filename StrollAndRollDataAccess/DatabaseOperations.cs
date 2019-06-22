@@ -402,8 +402,8 @@ namespace StrollAndRollDataAccess
                     }
                 }
             }
-
-            billingCost.Tax = taxPercentage * billingCost.Price;
+            billingCost.Price = Math.Round(billingCost.Price, 2);
+            billingCost.Tax = Math.Round( taxPercentage * billingCost.Price,2);
 
             return billingCost;
         }
