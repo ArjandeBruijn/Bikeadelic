@@ -16,8 +16,8 @@
 
     <div style="width: 100%;min-height: 750px; background-color: white">
 
-        <span  style="display: inline; margin:10px; width: 30%; float: left; background-color: white">
-            <img id="FrontPagePhoto" style="border: none; margin: 0px"
+        <span id ="FrontPagePhoto"  style="display: inline; margin:10px; float: left; background-color: white">
+            <img   style="width:100%; border: none; margin: 0px"
                 src="Images/FrontPageFamilyPicture.jpg" />
             Bikeadelic-rentals is a family business. 
         </span>

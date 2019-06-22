@@ -140,8 +140,9 @@
                         var bikeNameHdrCell = row.insertCell(-1);
 
                         if (i == 0) {
-                            bikeNameHdrCell.innerHTML = "<b>What</b>"
+                            bikeNameHdrCell.innerHTML = "<b>Bikes</b>"
                         }
+                        bikeNameHdrCell.style.paddingRight = "0.4em";
 
                         var nameCell = row.insertCell(-1);
 
