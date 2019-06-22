@@ -6,6 +6,11 @@
 
     <script type="text/javascript">
 
+        var includes = function (inString, containingString)
+        {
+            return inString.indexOf(containingString) >= 0;
+        }
+         
         var selectedDateCell = null;
          
         var InventoryGroups = null;
@@ -29,19 +34,19 @@
             document.getElementById('cbdayPartDay').checked = '';
             document.getElementById('cbdayPartMorning').checked = '';
 
-            if (selectedDateCell.AvailableDayPartString.includes('Evening') == false)
+            if (includes(selectedDateCell.AvailableDayPartString, 'Evening')==false)
             {
                 document.getElementById('dayPartEvening').style.visibility = 'collapse';
             }
-            if (selectedDateCell.AvailableDayPartString.includes('Day') == false)
+            if (includes(selectedDateCell.AvailableDayPartString, 'Day') == false)
             {
                  document.getElementById('dayPartDay').style.visibility = 'collapse';
             }
-            if (selectedDateCell.AvailableDayPartString.includes('Afternoon') == false)
+            if (includes(selectedDateCell.AvailableDayPartString, 'Afternoon') == false)
             {
                  document.getElementById('dayPartAfternoon').style.visibility = 'collapse';
             }
-            if (selectedDateCell.AvailableDayPartString.includes('Morning') == false)
+            if (includes(selectedDateCell.AvailableDayPartString, 'Morning') == false)
             {
                  document.getElementById('dayPartMorning').style.visibility = 'collapse';
             }
@@ -359,7 +364,7 @@
 
             var isSelectedDateCell = selectedDateCell == dateCell;
             
-            if (dateCell.AvailableDayPartString.includes('Day')) {
+            if (includes(dateCell.AvailableDayPartString, 'Day')) {
                 if (isSelectedDateCell) {
                     if (dateCell.SelectedDayPart == "Afternoon" ||
                         dateCell.SelectedDayPart == "Evening") {
@@ -374,7 +379,7 @@
                     
                 }
             }
-            else if (dateCell.AvailableDayPartString.includes('Morning')) {
+            else if (includes(dateCell.AvailableDayPartString, 'Morning')) {
                 if (isSelectedDateCell) {
                     dateCell.classList.add("gradgreenred")
                 }
@@ -382,8 +387,8 @@
                     dateCell.classList.add("gradwhitered");
                 }
             }
-            else if (dateCell.AvailableDayPartString.includes('Afternoon') ||
-                dateCell.AvailableDayPartString.includes('Evening')) {
+            else if (includes(dateCell.AvailableDayPartString, 'Afternoon') ||
+                includes(dateCell.AvailableDayPartString, 'Evening')) {
 
                 if (isSelectedDateCell) {
                     dateCell.classList.add("gradredgreen");
