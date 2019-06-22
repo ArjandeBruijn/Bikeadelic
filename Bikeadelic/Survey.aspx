@@ -222,7 +222,9 @@
 
         <tr>
             <td></td>
-            <td>Would you like to join our mailing list to hear about new bikes, events, special offers, etc?  If so, please tell us your email.
+            <td>If you would like a free rental (limited to one per group reservation),
+                or hear about about new bikes, events, 
+                special offers, please tell us your email.
             </td>
             <td>
                 <input id ="emailAddress"/> 
@@ -236,6 +238,7 @@
             <td>
                 <select id ="HowManyTimesAYearEmail">
                     <option>Please select...</option>
+                    <option>never (free ride only)</option>
                     <option>weekly</option>
                     <option>monthly</option>
                     <option>one or two times per year</option>
