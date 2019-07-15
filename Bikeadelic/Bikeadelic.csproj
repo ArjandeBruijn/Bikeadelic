@@ -120,6 +120,7 @@
     <Content Include="Images\HistoricPhoto.jpg" />
     <Content Include="Images\LeeMartinezPark.JPG" />
     <Content Include="Images\Logo.jpg" />
+    <Content Include="Images\refresh.png" />
     <Content Include="Reserve.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />

@@ -2,6 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <script src="Calendar.js"></script>
 
     <script type="text/javascript">
@@ -205,11 +207,17 @@
                     emailCell.colSpan = '2';
 
                     var inputFieldEmail = document.createElement('input');
+                     
                     inputFieldEmail.id = 'Email';
                     inputFieldEmail.style = "padding: 1px; type='text' width: 100%";
-
+                    //  onchange= ''
                     if (result.d.Email != null) {
                         inputFieldEmail.value = result.d.Email;
+                    }
+
+                    inputFieldEmail.onchange = function ()
+                    {
+                        GetBikesAvailability(false);
                     }
 
                     emailCell.appendChild(inputFieldEmail);
@@ -254,8 +262,21 @@
 
                     pricesTaxRow.insertCell(-1);
 
-                    var taxHdrCell = pricesTaxRow.insertCell(-1);
+                    
+                    var pricesDiscountRow = table.insertRow(-1);
 
+                    pricesDiscountRow.insertCell(-1);
+
+                    var pricesDiscountHdrCell = pricesDiscountRow.insertCell(-1);
+
+                    pricesDiscountHdrCell.innerHTML = 'Discount';
+
+                    var pricesDiscountCell = pricesDiscountRow.insertCell(-1);
+
+                    pricesDiscountCell.innerHTML = result.d.BillingCost.Discount + '%'  ;
+                     
+                    var taxHdrCell = pricesTaxRow.insertCell(-1);
+                      
                     taxHdrCell.innerHTML = "Tax";
 
                     var taxCell = pricesTaxRow.insertCell(-1);
@@ -272,9 +293,8 @@
 
                     var totalCell = pricesTotalRow.insertCell(-1);
 
-                    totalCell.innerHTML = '$' + (result.d.BillingCost.Tax + result.d.BillingCost.Price);
-
-                      
+                    totalCell.innerHTML = '$' + (((1.0 - result.d.BillingCost.Discount/100) * (result.d.BillingCost.Tax  +  result.d.BillingCost.Price))).toFixed(2);;
+                     
                     var calendar = document.getElementById('calendar');
                      
                     for (var d = 0; d < calendar.dayCells.length; d++) {

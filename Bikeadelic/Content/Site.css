@@ -19,13 +19,13 @@ textarea {
     border-right: 1px solid #000;
 }
 
-.columnBorderTable td:first-child {
-    border-left: none;
-}
+    .columnBorderTable td:first-child {
+        border-left: none;
+    }
 
-.columnBorderTable td:last-child {
-    border-right: none;
-}
+    .columnBorderTable td:last-child {
+        border-right: none;
+    }
 
 .columnBorderTable tr:first-child {
     border-bottom: 1px solid #000;
@@ -45,10 +45,12 @@ td {
     padding-top: 0em;
     padding-bottom: 0.3em;
 }
+
 .ageSelectionTable td {
     padding-top: 0em;
     padding-bottom: 0em;
 }
+
 td {
     padding-top: .5em;
     padding-bottom: .5em;
@@ -66,6 +68,7 @@ ul li, .navbar-brand {
 .centered {
     display: inline-block;
 }
+
 .centered_div {
     width: 10%;
     height: 2%;
@@ -75,33 +78,43 @@ ul li, .navbar-brand {
     margin-left: -5%;
     margin-top: -1%;
 }
+
 .gradredgreen {
     background-image: linear-gradient(to right, red 50%, green 51%);
 }
+
 .gradgreenred {
     background-image: linear-gradient(to right, green 50%, red 51%);
 }
+
 .gradwhitered {
     background-image: linear-gradient(to right, white 50%, red 51%);
 }
+
 .gradwhitegreen {
     background-image: linear-gradient(to right, white 50%, green 51%);
 }
+
 .gradgreenwhite {
     background-image: linear-gradient(to right, green 50%, white 51%);
 }
+
 .gradgreen {
     background-image: linear-gradient(to right, green 50%, green 51%);
 }
+
 .gradred2 {
     background-image: linear-gradient(to right, red 50%, red 51%);
 }
+
 .gradred {
     background-image: linear-gradient(to right, red 50%, red 51%);
 }
+
 .gradredwhite {
     background-image: linear-gradient(to right, red 50%, white 51%);
 }
+
 .selectedCalendarCell {
     background-color: forestgreen;
 }
@@ -161,21 +174,55 @@ ul li, .navbar-brand {
         width: 40%;
     }
 
+    span.centered {
+        text-align: center;
+    }
+
+    .circle-text {
+        width: 40%;
+    }
+
+    .circle-text:after {
+         content: "";
+          display: block;
+          width: 100%;
+          height: 0;
+          padding-bottom: 60%;
+           
+          background: #4679BD;
+          -moz-border-radius: 50%;
+          -webkit-border-radius: 50%;
+          border-radius: 50%;
+     }
+
+    .circle-text div {
+        font-family: 'Arial Rounded MT';
+        font-size: 32px;
+        float: left;
+        width: 100%;
+        padding-top: 22%;
+        line-height: 1em;
+        margin-top: -0.5em;
+        text-align: center;
+        color: black;
+    }
+
     div {
         font-size: 17px;
         padding: 10px;
     }
+
     #DiscountBanner {
         width: 40%;
     }
+
     #FrontPagePhoto {
         width: 30%;
     }
+
     #HistoricPennyFarthingFoto {
         width: 30%;
     }
-    
-    
 }
 
 
@@ -188,23 +235,28 @@ ul li, .navbar-brand {
         height: 30px;
         border: 1px solid black;
     }
+
     #HistoricPennyFarthingFoto {
         width: 50%;
     }
-    
+
     #FrontPagePhoto {
         width: 50%;
     }
+
     #DiscountBanner {
         width: 2%;
     }
+
     ul li, .navbar-brand {
         color: yellow;
         font-size: 20px;
     }
-    ul li a {
-       margin:0px;
-    }
+
+        ul li a {
+            margin: 0px;
+        }
+
     .navbar-brand {
         color: yellow;
         font-size: 30px;
@@ -226,5 +278,4 @@ ul li, .navbar-brand {
     h2 {
         font-size: 1.5em;
     }
-     
 }

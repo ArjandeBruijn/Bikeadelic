@@ -367,10 +367,10 @@ namespace StrollAndRollDataAccess
             return values.Single();
         }
         public static BillingCost GetPriceEstimateRental
-            (InventoryGroup[] desiredBikes,
+            (string email,
+            InventoryGroup[] desiredBikes,
             DateSelection dateSelections)
         {
-            
             double taxPercentage = Convert.ToDouble(GetParameterValue("taxPercentage"));
 
             BillingCost billingCost = new BillingCost();
@@ -415,7 +415,20 @@ namespace StrollAndRollDataAccess
             billingCost.Price = Math.Round(billingCost.Price, 2);
             billingCost.Tax = Math.Round( taxPercentage * billingCost.Price,2);
 
+            billingCost.Discount = GetDiscount(email);
+
             return billingCost;
+        }
+        private static double GetDiscount(string email)
+        {
+            double discount = 0;
+
+            if (EmailAddressExistsInSurvey(email))
+            {
+                discount = Convert.ToDouble(GetParameterValue("surveydiscount"));
+            }
+ 
+            return discount;
         }
         public static string MakeReservation(InventoryGroup[] inventoryGroups,
              string name,
@@ -465,7 +478,7 @@ namespace StrollAndRollDataAccess
             }
             string id = string.Empty;
 
-            BillingCost billingCost = GetPriceEstimateRental(inventoryGroups, dateSelection);
+            BillingCost billingCost = GetPriceEstimateRental(email, inventoryGroups, dateSelection);
 
             id = DatabaseOperations.InsertAppointment
                         (dateSelection, name.ToString(), email.ToString(), phoneNumber.ToString());
@@ -626,7 +639,7 @@ namespace StrollAndRollDataAccess
                 bikesAvailability.Message = $"The bikes you want are not available in the timeframe you specified";
             }
             bikesAvailability.BillingCost
-                    = GetPriceEstimateRental(bikesAvailability.Inventory, dateSelection);
+                    = GetPriceEstimateRental(email, bikesAvailability.Inventory, dateSelection);
             
             return bikesAvailability;
         }

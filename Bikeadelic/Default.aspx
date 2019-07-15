@@ -16,9 +16,8 @@
         
     <div style="width: 100%; background-color: white">
 
-        <span id ="DiscountBanner"  style="display: inline; margin:10px; float: right; background-color: white">
-            <img   style="width:100%; border: none; margin: 0px"
-                src="Images/discount.png" />
+         <span  class="circle-text" style="display: inline; margin:10px; float: right; background-color: white">
+            <div>We are looking for feedback and we now give you a 25% discount if you fill in our survey</div>
         </span>
 
         <h2>We are:</h2>
