@@ -38,7 +38,7 @@
 
     </div>
 
-    <div style="width: 100%;min-height: 750px; background-color: white">
+    <div style="width: 100%;min-height: 600px; background-color: white">
 
         
         <span id ="FrontPagePhoto"  style="display: inline; margin:10px; float: left; background-color: white">

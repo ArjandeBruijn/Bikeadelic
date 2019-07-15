@@ -17,6 +17,15 @@ namespace StrollAndRollDataAccess
 
         static string ConnectionString => "Data Source=tcp:s13.winhost.com;Initial Catalog = DB_127283_data; User ID = DB_127283_data_user; Password=G0dverd0mme!;Integrated Security = False;";
 
+        private static bool EmailAddressExistsInSurvey(string emailAddress)
+        {
+            string sql = $"select emailaddress from questionaireanswers where emailaddress = '{emailAddress}'";
+
+            string[] emailaddresses = GetItems<string>(sql, (SqlDataReader reader) => { return reader["emailaddress"].ToString(); });
+                 
+            return emailaddresses.Any();
+        }
+
         public static string SubmitQuestionaire(string WhereDoYouHangOutOnline,
             string FavoritePlacesToHangOutAroundTown,
             string HowLikelyAreYouToRentAWeirdBike,
@@ -31,6 +40,10 @@ namespace StrollAndRollDataAccess
             string EmailAddress,
             string HowManyTimesAYearEmail)
         {
+            if (EmailAddressExistsInSurvey(EmailAddress))
+            {
+                return "You have already submitted a survey, only one survey can be submitted per email address";
+            }
 
             string ageSelectionTableId = Guid.NewGuid().ToString();
             string questionaireId = Guid.NewGuid().ToString();
@@ -56,10 +69,7 @@ namespace StrollAndRollDataAccess
                     sqls.Add($"update {tableName }  set {propertyName}= '{EscapeApostrophe(propertyValue)}'");
                 }
             }
-
-            
-   
-
+             
             AddToSqlListIfPropHasValue(TableNames.QuestionaireAnswers, nameof(FavoritePlacesToHangOutAroundTown),  FavoritePlacesToHangOutAroundTown);
             AddToSqlListIfPropHasValue(TableNames.QuestionaireAnswers, nameof(HowLikelyAreYouToRentAWeirdBike), HowLikelyAreYouToRentAWeirdBike);
             AddToSqlListIfPropHasValue(TableNames.QuestionaireAnswers, nameof(WhyWouldYouOrWouldntYouBeInterested), WhyWouldYouOrWouldntYouBeInterested);

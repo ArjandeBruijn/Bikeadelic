@@ -29,10 +29,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/25/2018 10:42:28</publishTime>
     </File>
     <File Include="bin/Bikeadelic.dll">
-      <publishTime>07/14/2019 21:25:40</publishTime>
+      <publishTime>07/14/2019 21:29:31</publishTime>
     </File>
     <File Include="bin/Bikeadelic.pdb">
-      <publishTime>07/14/2019 21:25:40</publishTime>
+      <publishTime>07/14/2019 21:29:31</publishTime>
     </File>
     <File Include="bin/Images/Logo.png">
       <publishTime>06/12/2019 06:15:01</publishTime>
@@ -554,7 +554,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/14/2019 13:30:56</publishTime>
     </File>
     <File Include="Default.aspx">
-      <publishTime>07/14/2019 21:25:29</publishTime>
+      <publishTime>07/14/2019 21:28:42</publishTime>
     </File>
     <File Include="Default2.aspx">
       <publishTime>07/11/2019 21:46:37</publishTime>
