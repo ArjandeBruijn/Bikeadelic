@@ -165,11 +165,16 @@ ul li, .navbar-brand {
         font-size: 17px;
         padding: 10px;
     }
-
+    #DiscountBanner {
+        width: 40%;
+    }
     #FrontPagePhoto {
         width: 30%;
     }
-
+    #HistoricPennyFarthingFoto {
+        width: 30%;
+    }
+    
     
 }
 
@@ -183,11 +188,16 @@ ul li, .navbar-brand {
         height: 30px;
         border: 1px solid black;
     }
-
+    #HistoricPennyFarthingFoto {
+        width: 50%;
+    }
+    
     #FrontPagePhoto {
         width: 50%;
     }
-
+    #DiscountBanner {
+        width: 2%;
+    }
     ul li, .navbar-brand {
         color: yellow;
         font-size: 20px;

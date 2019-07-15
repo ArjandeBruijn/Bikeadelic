@@ -29,10 +29,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/25/2018 10:42:28</publishTime>
     </File>
     <File Include="bin/Bikeadelic.dll">
-      <publishTime>06/22/2019 09:32:08</publishTime>
+      <publishTime>07/14/2019 21:25:40</publishTime>
     </File>
     <File Include="bin/Bikeadelic.pdb">
-      <publishTime>06/22/2019 09:32:08</publishTime>
+      <publishTime>07/14/2019 21:25:40</publishTime>
     </File>
     <File Include="bin/Images/Logo.png">
       <publishTime>06/12/2019 06:15:01</publishTime>
@@ -209,16 +209,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/24/2018 14:38:24</publishTime>
     </File>
     <File Include="bin/SendEmail.dll">
-      <publishTime>06/19/2019 22:02:11</publishTime>
+      <publishTime>07/11/2019 21:48:26</publishTime>
     </File>
     <File Include="bin/SendEmail.pdb">
-      <publishTime>06/19/2019 22:02:11</publishTime>
+      <publishTime>07/11/2019 21:48:26</publishTime>
     </File>
     <File Include="bin/StrollAndRollDataAccess.dll">
-      <publishTime>06/19/2019 22:02:11</publishTime>
+      <publishTime>07/11/2019 21:48:27</publishTime>
     </File>
     <File Include="bin/StrollAndRollDataAccess.pdb">
-      <publishTime>06/19/2019 22:02:11</publishTime>
+      <publishTime>07/11/2019 21:48:27</publishTime>
     </File>
     <File Include="bin/System.AppContext.dll">
       <publishTime>01/12/2019 13:57:02</publishTime>
@@ -551,10 +551,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/22/2019 19:08:28</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>06/19/2019 22:11:52</publishTime>
+      <publishTime>07/14/2019 13:30:56</publishTime>
     </File>
     <File Include="Default.aspx">
-      <publishTime>06/19/2019 22:11:23</publishTime>
+      <publishTime>07/14/2019 21:25:29</publishTime>
+    </File>
+    <File Include="Default2.aspx">
+      <publishTime>07/11/2019 21:46:37</publishTime>
+    </File>
+    <File Include="DefaultNew.aspx">
+      <publishTime>07/13/2019 22:23:09</publishTime>
     </File>
     <File Include="FAQ.aspx">
       <publishTime>05/05/2019 14:42:49</publishTime>
@@ -583,11 +589,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Global.asax">
       <publishTime>04/22/2019 19:08:22</publishTime>
     </File>
+    <File Include="Images/discount.png">
+      <publishTime>07/14/2019 16:50:46</publishTime>
+    </File>
+    <File Include="Images/facebook.png">
+      <publishTime>07/14/2019 21:15:50</publishTime>
+    </File>
     <File Include="Images/FrontPageFamilyPicture.jpg">
       <publishTime>04/28/2019 20:48:13</publishTime>
     </File>
     <File Include="Images/FrontPageImage.png">
       <publishTime>03/30/2019 09:11:23</publishTime>
+    </File>
+    <File Include="Images/HistoricPhoto.jpg">
+      <publishTime>07/10/2019 19:46:23</publishTime>
     </File>
     <File Include="Images/LeeMartinezPark.JPG">
       <publishTime>06/13/2019 18:35:56</publishTime>
@@ -707,13 +722,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/22/2019 19:08:29</publishTime>
     </File>
     <File Include="Site.Master">
-      <publishTime>05/31/2019 21:48:06</publishTime>
+      <publishTime>07/14/2019 21:20:12</publishTime>
     </File>
     <File Include="Site.Mobile.Master">
       <publishTime>04/22/2019 19:08:30</publishTime>
     </File>
     <File Include="Survey.aspx">
-      <publishTime>06/22/2019 09:30:33</publishTime>
+      <publishTime>07/13/2019 15:13:28</publishTime>
     </File>
     <File Include="ViewSwitcher.ascx">
       <publishTime>04/22/2019 19:08:30</publishTime>

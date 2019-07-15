@@ -2,20 +2,45 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
+    
 
     <div style="width: 100%; float: left;">
         <h1 style="font-family: Jokerman; color: darkorange;">Welcome to our menagerie of mechanical mayhem! 
-            We rent out boneshakers and other weird bikes.
+            We rent out penny farthings and other weird bikes.
         </h1>
     </div>
 
     <div class="wrapper">
         <img class="logoImage" style="width: 50%; border: none;" src="Images/Logo.jpg" />
     </div>
+        
+    <div style="width: 100%; background-color: white">
 
+        <span id ="DiscountBanner"  style="display: inline; margin:10px; float: right; background-color: white">
+            <img   style="width:100%; border: none; margin: 0px"
+                src="Images/discount.png" />
+        </span>
+
+        <h2>We are:</h2>
+
+        Bikeadelics-rentals.com is our small business to rent out cool and weird bicycles. 
+        We currently have <a href="/Bikes">Penny Farthing replicas, glide cycles and half bikes</a> 
+
+        <br><br>
+        
+        We rent them out on evenings and in the weekends. In most cases we will de able to deliver them to any 
+        location in the Fort Collins area and we will be able to demonstrate how to ride the bikes and practice with 
+        you untill you are comfortable to take them out on this awesome trail system that our city has. 
+
+
+        
+
+
+    </div>
 
     <div style="width: 100%;min-height: 750px; background-color: white">
 
+        
         <span id ="FrontPagePhoto"  style="display: inline; margin:10px; float: left; background-color: white">
             <img   style="width:100%; border: none; margin: 0px"
                 src="Images/FrontPageFamilyPicture.jpg" />
@@ -40,46 +65,6 @@
                     (h) selfies are not advised when riding a bicycle, so this may not be for you.  
                     We would like both you and the bike to come back intact.  But maybe you 
                     could talk someone into taking your picture…
-
-       
-
-        <h2>Learn to ride a boneshaker</h2>
-
-           Most people will learn to ride a boneshaker within half an hour and spend a bit more time
-                on learning how to get on and off.
-        
-        <span style="display: inline;  float: right; background-color: blue">
-           <img style="width:300px" src="Images/LeeMartinezPark.JPG" />
-        </span>
-        
-        
-        We have a couple of tools to make the learning 
-                process a little easier for you. 
-
-       <br>
-        <br>
-
-        
-
-
-            For example, we found that some people are helped 
-                by starting off with our mini-boneshaker that rides a lot like a full sized boneshaker 
-                but that has a break and allows you to reach the floor without jumping off.
-                
-                <br>
-            
-          <br>
-            If available, you can use the mini-boneshakers without extra charge when you 
-            rent a full sized boneshaker.We will bring small benches to practice getting on and off as well. We will meet you in 
-            Lee Martinez park and practice with you with each rental.
-
-   
-
-        
-
-      
-         
-        
          
 
     </div>

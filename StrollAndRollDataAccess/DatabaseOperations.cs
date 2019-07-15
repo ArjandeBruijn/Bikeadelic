@@ -521,7 +521,7 @@ namespace StrollAndRollDataAccess
                 string customerMessage = $"Dear {name} \n\n" +
                     $"Thank you for your reservation of {rentedBikesMessagePart}. \n\n" +
                     $"We have you down for {daySelectionPartMessage}. \n\n" +
-                    $"We are looking forward to see you at {dropOffTimePartMessage} at Lee Martinez park. \n\n" +
+                    $"We are looking forward to see you at {dropOffTimePartMessage}. \n\n" +
                     $"Please have cash payment of ${billingCost.Price} + tax ${billingCost.Tax} = ${billingCost.Price + billingCost.Tax} ready when you meet us there \n\n"+
                     $"We will contact you at {email} or {phoneNumber} to confirm.\n\n" +
                     $"Thank you for your business and looking forward to meet you.\n\n" +
