@@ -19,6 +19,17 @@
 
                         var photoLink = result.d[i];
 
+                        if (photoLink.Link.includes("www.facebook.com"))
+                        {
+                            var div = document.createElement("div");
+
+                            div.innerHTML = photoLink;
+                             
+                            src.appendChild(div);
+
+                            continue;
+                        }
+
                         var smallWidth = "25%";
                         var largeWidth = "100%";
 

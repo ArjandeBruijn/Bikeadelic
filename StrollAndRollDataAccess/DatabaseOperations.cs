@@ -118,9 +118,11 @@ namespace StrollAndRollDataAccess
 
                 faq.Answer = reader["Answer"].ToString();
 
+                faq.Show= Convert.ToBoolean(reader["Show"].ToString());
+
                 return faq;
             }
-            return GetItems(sql, GetFaqFromReader);
+            return GetItems(sql, GetFaqFromReader).Where(faq => faq.Show==true).ToArray();
         }
         public static BikeModel[] GetBikeModels()
         {

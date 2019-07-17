@@ -29,10 +29,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/25/2018 10:42:28</publishTime>
     </File>
     <File Include="bin/Bikeadelic.dll">
-      <publishTime>07/14/2019 21:29:31</publishTime>
+      <publishTime>07/16/2019 21:28:43</publishTime>
     </File>
     <File Include="bin/Bikeadelic.pdb">
-      <publishTime>07/14/2019 21:29:31</publishTime>
+      <publishTime>07/16/2019 21:28:43</publishTime>
     </File>
     <File Include="bin/Images/Logo.png">
       <publishTime>06/12/2019 06:15:01</publishTime>
@@ -215,10 +215,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/11/2019 21:48:26</publishTime>
     </File>
     <File Include="bin/StrollAndRollDataAccess.dll">
-      <publishTime>07/11/2019 21:48:27</publishTime>
+      <publishTime>07/16/2019 21:28:42</publishTime>
     </File>
     <File Include="bin/StrollAndRollDataAccess.pdb">
-      <publishTime>07/11/2019 21:48:27</publishTime>
+      <publishTime>07/16/2019 21:28:42</publishTime>
     </File>
     <File Include="bin/System.AppContext.dll">
       <publishTime>01/12/2019 13:57:02</publishTime>
@@ -551,16 +551,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/22/2019 19:08:28</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>07/14/2019 13:30:56</publishTime>
+      <publishTime>07/15/2019 17:36:36</publishTime>
     </File>
     <File Include="Default.aspx">
-      <publishTime>07/14/2019 21:28:42</publishTime>
+      <publishTime>07/15/2019 17:25:04</publishTime>
     </File>
     <File Include="Default2.aspx">
       <publishTime>07/11/2019 21:46:37</publishTime>
     </File>
     <File Include="DefaultNew.aspx">
-      <publishTime>07/13/2019 22:23:09</publishTime>
+      <publishTime>07/16/2019 21:01:58</publishTime>
     </File>
     <File Include="FAQ.aspx">
       <publishTime>05/05/2019 14:42:49</publishTime>
@@ -584,7 +584,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/22/2019 19:08:28</publishTime>
     </File>
     <File Include="Gallery.aspx">
-      <publishTime>05/05/2019 14:42:29</publishTime>
+      <publishTime>07/15/2019 21:17:15</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>04/22/2019 19:08:22</publishTime>
@@ -619,6 +619,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Images/Quote/Top.png">
       <publishTime>04/22/2019 19:37:23</publishTime>
     </File>
+    <File Include="Images/refresh.png">
+      <publishTime>07/15/2019 05:54:30</publishTime>
+    </File>
     <File Include="Logo.ico">
       <publishTime>05/04/2019 08:32:54</publishTime>
     </File>
@@ -629,7 +632,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/13/2019 18:44:19</publishTime>
     </File>
     <File Include="Reserve.aspx">
-      <publishTime>06/22/2019 09:26:14</publishTime>
+      <publishTime>07/15/2019 17:11:41</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>04/22/2019 19:08:28</publishTime>
