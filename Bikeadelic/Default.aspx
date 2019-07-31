@@ -17,24 +17,22 @@
     <div style="width: 100%; background-color: white">
 
          <span  class="circle-text" style="display: inline; margin:10px; float: right; background-color: white">
-            <div>We are looking for feedback and we now give you a 25% discount if you fill in our survey</div>
+            <div>We are looking for feedback and we now give you a 50% discount if you fill in our survey</div>
         </span>
 
         <h2>We are:</h2>
 
-        Bikeadelics-rentals.com is our small business to rent out cool and weird bicycles. 
-        We currently have <a href="/Bikes">Penny Farthing replicas, glide cycles and half bikes</a> 
+        Bikeadelic-rentals.com is our small business to rent out cool and weird bicycles. 
+        We currently have <a href="/Bikes">Penny Farthing replicas and glide cycles</a> 
 
-        <br><br>
+        <br><br>EE
         
         We rent them out on evenings and in the weekends. In most cases we will de able to deliver them to any 
-        location in the Fort Collins area and we will be able to demonstrate how to ride the bikes and practice with 
+        location in the Fort Collins area.  We will be able to show you how to ride the bikes and practice with 
         you untill you are comfortable to take them out on this awesome trail system that our city has. 
-
-
-        
-
-
+         
+        <iframe class="fb-review" src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FBikeadelic%2Fposts%2F2275444759435917&width=500" ;style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+         
     </div>
 
     <div style="width: 100%;min-height: 600px; background-color: white">

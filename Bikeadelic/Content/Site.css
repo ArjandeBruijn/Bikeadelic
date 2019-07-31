@@ -128,11 +128,36 @@ ul li, .navbar-brand {
         height: 80px;
         border: 1px solid black;
     }
-
+    .fb-review {
+        width: 60%;
+        height: 212px;
+    }
     .narrowOnLargeScreens {
         width: 60%;
     }
+    .circle-text:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 0;
+        padding-bottom: 60%;
+        background: #4679BD;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+    }
 
+    .circle-text div {
+        font-family: 'Arial Rounded MT';
+        font-size: 32px;
+        float: left;
+        width: 100%;
+        padding-top: 22%;
+        line-height: 1em;
+        margin-top: -0.5em;
+        text-align: center;
+        color: black;
+    }
     ul li, .navbar-brand {
         color: yellow;
         font-size: 30px;
@@ -181,32 +206,7 @@ ul li, .navbar-brand {
     .circle-text {
         width: 40%;
     }
-
-    .circle-text:after {
-         content: "";
-          display: block;
-          width: 100%;
-          height: 0;
-          padding-bottom: 60%;
-           
-          background: #4679BD;
-          -moz-border-radius: 50%;
-          -webkit-border-radius: 50%;
-          border-radius: 50%;
-     }
-
-    .circle-text div {
-        font-family: 'Arial Rounded MT';
-        font-size: 32px;
-        float: left;
-        width: 100%;
-        padding-top: 22%;
-        line-height: 1em;
-        margin-top: -0.5em;
-        text-align: center;
-        color: black;
-    }
-
+     
     div {
         font-size: 17px;
         padding: 10px;
@@ -228,6 +228,35 @@ ul li, .navbar-brand {
 
 @media (max-width: 767px) {
 
+    .circle-text:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 0;
+        padding-bottom: 60%;
+        background: #4679BD;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+    }
+
+    .circle-text div {
+        font-family: 'Arial Rounded MT';
+        font-size: 20px;
+        float: left;
+        width: 100%;
+        padding-top: 22%;
+        line-height: 1em;
+        margin-top: -0.5em;
+        text-align: center;
+        color: black;
+    }
+
+    .fb-review {
+        width: 100%;
+        height: 300px;
+    }
+     
     .calendarCell {
         min-width: 30px;
         min-height: 30px;
