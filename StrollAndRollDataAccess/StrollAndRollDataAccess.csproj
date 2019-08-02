@@ -58,6 +58,8 @@
     <Compile Include="DTO\InventoryGroup.cs" />
     <Compile Include="DTO\OpeningHours.cs" />
     <Compile Include="DTO\PhotoLink.cs" />
+    <Compile Include="DTO\SelectableDayPartOption.cs" />
+    <Compile Include="DTO\SelectableDayPartOptions.cs" />
     <Compile Include="DTO\TimeSlot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReturnContentWrapper.cs" />

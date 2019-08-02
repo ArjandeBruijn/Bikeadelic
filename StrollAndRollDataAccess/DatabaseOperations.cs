@@ -8,8 +8,15 @@ using System.Linq;
 
 namespace StrollAndRollDataAccess
 {
+    
     public static class DatabaseOperations
     {
+        static SelectableDayPartOption Morning = new SelectableDayPartOption() { Name = DayPartSelection.DayPart.Morning.ToString(), Label = "Morning (9:00 am to 2:00 pm)" };
+        static SelectableDayPartOption Afternoon = new SelectableDayPartOption() { Name = DayPartSelection.DayPart.Afternoon.ToString(), Label = "Afternoon (2:00 pm to 7:00 pm)" };
+        static SelectableDayPartOption Evening = new SelectableDayPartOption() { Name = DayPartSelection.DayPart.Evening.ToString(), Label = "Evening (4:00 pm to dusk)" };
+        static SelectableDayPartOption Day = new SelectableDayPartOption() { Name = DayPartSelection.DayPart.Day.ToString(), Label = "Full day (9:00 am to 7:00 pm)" };
+
+
         public static string InventorySelectSql => "select count(b.name) as 'Count',m.displayorder, b.name, b.id, m.description, m.id as modelid from inventory i " +
             $"inner join bikes b on i.bikeid = b.id " +
             $"left outer join bikemodels m on m.id =  i.bikeModel " +
@@ -25,7 +32,34 @@ namespace StrollAndRollDataAccess
                  
             return emailaddresses.Any();
         }
+        private static bool IsWeekend(DateTime date)
+        {
+            return date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday;
+        }
+        public static SelectableDayPartOptions GetSelectableDayPartOptions(DateTime date)
+        {
+            SelectableDayPartOptions selectableDayPartOptions = new SelectableDayPartOptions();
 
+            if (IsWeekend(date))
+            {
+                selectableDayPartOptions.dayPartSelections = new SelectableDayPartOption[]
+                {
+                    Morning,
+                    Afternoon,
+                    Evening,
+                    Day
+                };
+            }
+            else
+            {
+                selectableDayPartOptions.dayPartSelections = new SelectableDayPartOption[]
+                {
+                    Evening
+                };
+            }
+
+            return selectableDayPartOptions;
+        }
         public static string SubmitQuestionaire(string WhereDoYouHangOutOnline,
             string FavoritePlacesToHangOutAroundTown,
             string HowLikelyAreYouToRentAWeirdBike,

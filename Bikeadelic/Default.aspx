@@ -25,7 +25,7 @@
         Bikeadelic-rentals.com is our small business to rent out cool and weird bicycles. 
         We currently have <a href="/Bikes">Penny Farthing replicas and glide cycles</a> 
 
-        <br><br>EE
+        <br><br>
         
         We rent them out on evenings and in the weekends. In most cases we will de able to deliver them to any 
         location in the Fort Collins area.  We will be able to show you how to ride the bikes and practice with 

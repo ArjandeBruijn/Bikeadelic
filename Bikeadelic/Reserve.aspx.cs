@@ -1,11 +1,7 @@
-﻿using Newtonsoft.Json;
-using SendEmail;
-using StrollAndRollDataAccess;
+﻿using StrollAndRollDataAccess;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Services;
-using System.Web.UI.WebControls;
 
 namespace Bikeadelic
 {
@@ -17,18 +13,44 @@ namespace Bikeadelic
         }
         private static DateTime GetDateFromJavaScriptDate(string javascriptDate)
         {
+            int year = default(int);
 
-            int year = Convert.ToInt32(javascriptDate.Substring(0, 4));
+            int month = default(int);
 
-            int month = Convert.ToInt32(javascriptDate.Substring(5, 2));
+            int day = default(int);
 
-            int day = Convert.ToInt32(javascriptDate.Substring(8, 2));
+            if (javascriptDate.Length == 10)
+            {
+                month  = Convert.ToInt32(javascriptDate.Substring(0, 2));
 
+                day = Convert.ToInt32(javascriptDate.Substring(3, 2));
+
+                year = Convert.ToInt32(javascriptDate.Substring(6, 4));
+                 
+            }
+            else
+            {
+                year = Convert.ToInt32(javascriptDate.Substring(0, 4));
+
+                month = Convert.ToInt32(javascriptDate.Substring(5, 2));
+
+                day = Convert.ToInt32(javascriptDate.Substring(8, 2));
+            }
+             
             DateTime date = new DateTime(year, month, day);
 
             return date;
         }
-       
+
+        [WebMethod]
+        public static SelectableDayPartOptions GetSelectableDayPartOptions(string date)
+        {
+            DateTime ddate = GetDateFromJavaScriptDate(date);
+
+            SelectableDayPartOptions selectableDayPartOptions = DatabaseOperations.GetSelectableDayPartOptions(ddate);
+
+            return selectableDayPartOptions;
+        }
 
         [WebMethod]
         public static BikesAvailability

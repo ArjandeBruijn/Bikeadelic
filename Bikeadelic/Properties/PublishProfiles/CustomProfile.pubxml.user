@@ -29,10 +29,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/25/2018 10:42:28</publishTime>
     </File>
     <File Include="bin/Bikeadelic.dll">
-      <publishTime>07/16/2019 21:28:43</publishTime>
+      <publishTime>07/31/2019 19:26:57</publishTime>
     </File>
     <File Include="bin/Bikeadelic.pdb">
-      <publishTime>07/16/2019 21:28:43</publishTime>
+      <publishTime>07/31/2019 19:26:57</publishTime>
     </File>
     <File Include="bin/Images/Logo.png">
       <publishTime>06/12/2019 06:15:01</publishTime>
@@ -215,10 +215,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/11/2019 21:48:26</publishTime>
     </File>
     <File Include="bin/StrollAndRollDataAccess.dll">
-      <publishTime>07/16/2019 21:28:42</publishTime>
+      <publishTime>07/30/2019 23:10:26</publishTime>
     </File>
     <File Include="bin/StrollAndRollDataAccess.pdb">
-      <publishTime>07/16/2019 21:28:42</publishTime>
+      <publishTime>07/30/2019 23:10:26</publishTime>
     </File>
     <File Include="bin/System.AppContext.dll">
       <publishTime>01/12/2019 13:57:02</publishTime>
@@ -551,10 +551,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/22/2019 19:08:28</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>07/15/2019 17:36:36</publishTime>
+      <publishTime>07/20/2019 13:15:42</publishTime>
     </File>
     <File Include="Default.aspx">
-      <publishTime>07/15/2019 17:25:04</publishTime>
+      <publishTime>07/30/2019 23:18:17</publishTime>
     </File>
     <File Include="Default2.aspx">
       <publishTime>07/11/2019 21:46:37</publishTime>
@@ -621,6 +621,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Images/refresh.png">
       <publishTime>07/15/2019 05:54:30</publishTime>
+    </File>
+    <File Include="Images/Youtube.png">
+      <publishTime>07/30/2019 23:08:52</publishTime>
     </File>
     <File Include="Logo.ico">
       <publishTime>05/04/2019 08:32:54</publishTime>
@@ -725,7 +728,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/22/2019 19:08:29</publishTime>
     </File>
     <File Include="Site.Master">
-      <publishTime>07/14/2019 21:20:12</publishTime>
+      <publishTime>07/31/2019 19:26:25</publishTime>
     </File>
     <File Include="Site.Mobile.Master">
       <publishTime>04/22/2019 19:08:30</publishTime>

@@ -16,42 +16,72 @@
         var selectedDateCell = null;
          
         var InventoryGroups = null;
-         
+
+         var GetSelectableDayPartOptions = function () {
+
+            var selectedDate = selectedDateCell != null ?
+                selectedDateCell.id:
+                null;
+
+             var data = JSON.stringify({
+                date: selectedDate,
+                
+             });
+              
+            $.ajax({
+                type: "POST",
+                async: true,
+                url: "Reserve.aspx/GetSelectableDayPartOptions",  
+                data: data,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+
+                    var dayPartSelections = result.d.dayPartSelections;
+
+                    var selectMorningAfternoonElement = document.getElementById('selectMorningAfternoon');
+
+                    selectMorningAfternoonElement.innerHTML = "";
+
+                    if (dayPartSelections.length > 0)
+                    {
+                        selectMorningAfternoonElement.style.display = '';
+                        selectMorningAfternoonElement.style.visibility = 'visible';
+                    }
+
+                    for (var c = 0; c < dayPartSelections.length; c++)
+                    {
+                        var dayPartString = dayPartSelections[c].Name;
+                        var dayPartLabel = dayPartSelections[c].Label;
+
+                        var handlerstring = "HandleSelectMorningAfterNoonRadioSelection('"+dayPartString+"')";
+
+                        selectMorningAfternoonElement.innerHTML =
+                            selectMorningAfternoonElement.innerHTML + 
+                            '<tr id="dayPart'+dayPartString+'"><td><input id="cbdayPart'+dayPartString+'" name="dayPart" type="radio" onchange= '+handlerstring+' /></td><td>'+dayPartLabel+'</td></tr>';
+                    }
+                        
+                },
+                failure: function (response) {
+
+                     
+                }
+            });
+
+        }
+
         var InitializeDayPartSelection = function () {
 
             if (selectedDateCell.AvailableDayPartString=="") {
                 return;
             }
 
-            document.getElementById('selectMorningAfternoon').style.display = '';
-            document.getElementById('selectMorningAfternoon').style.visibility = 'visible';
+            var selectableDayPartOptions = GetSelectableDayPartOptions();
 
-            document.getElementById('dayPartDay').style.visibility = 'visible';
-            document.getElementById('dayPartAfternoon').style.visibility = 'visible';
-            document.getElementById('dayPartMorning').style.visibility = 'visible';
-            document.getElementById('dayPartEvening').style.visibility = 'visible';
              
-            document.getElementById('cbdayPartEvening').checked = '';
-            document.getElementById('cbdayPartAfternoon').checked = '';
-            document.getElementById('cbdayPartDay').checked = '';
-            document.getElementById('cbdayPartMorning').checked = '';
 
-            if (includes(selectedDateCell.AvailableDayPartString, 'Evening')==false)
-            {
-                document.getElementById('dayPartEvening').style.visibility = 'collapse';
-            }
-            if (includes(selectedDateCell.AvailableDayPartString, 'Day') == false)
-            {
-                 document.getElementById('dayPartDay').style.visibility = 'collapse';
-            }
-            if (includes(selectedDateCell.AvailableDayPartString, 'Afternoon') == false)
-            {
-                 document.getElementById('dayPartAfternoon').style.visibility = 'collapse';
-            }
-            if (includes(selectedDateCell.AvailableDayPartString, 'Morning') == false)
-            {
-                 document.getElementById('dayPartMorning').style.visibility = 'collapse';
-            }
+
+
               
         }
          
@@ -448,31 +478,7 @@
 
 
     <table class="centered_div" id="selectMorningAfternoon" style="background-color: gray; visibility: collapse">
-
-        
-        <tr id="dayPartMorning">
-            <td>
-                <input id="cbdayPartMorning" name="dayPart" type="radio" onchange="HandleSelectMorningAfterNoonRadioSelection('Morning')" /></td>
-            <td>Morning (9:00 am to 2:00 pm)</td>
-        </tr>
-
-        <tr id="dayPartAfternoon">
-            <td>
-                <input id="cbdayPartAfternoon" name="dayPart" type="radio" onchange="HandleSelectMorningAfterNoonRadioSelection('Afternoon')" /></td>
-            <td>Afternoon (2:00 pm to 7:00 pm)</td>
-        </tr>
-        <tr id="dayPartEvening">
-            <td>
-                <input id="cbdayPartEvening" name="dayPart" type="radio" onchange="HandleSelectMorningAfterNoonRadioSelection('Evening')" /></td>
-            <td>Evening (4:00 pm to dusk)</td>
-        </tr>
-        <tr id="dayPartDay">
-            <td>
-                <input id="cbdayPartDay" name="dayPart" type="radio" onchange="HandleSelectMorningAfterNoonRadioSelection('Day')" /></td>
-            <td>Full day (9:00 am to 7:00 pm)</td>
-        </tr>
          
-
     </table>
 
     <div class="wrap">
