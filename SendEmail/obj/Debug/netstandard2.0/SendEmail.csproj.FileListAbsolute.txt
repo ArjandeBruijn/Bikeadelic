@@ -1,0 +1,9 @@
+C:\Users\Allison\Desktop\Bikeadelic\SendEmail\bin\Debug\netstandard2.0\SendEmail.deps.json
+C:\Users\Allison\Desktop\Bikeadelic\SendEmail\bin\Debug\netstandard2.0\SendEmail.dll
+C:\Users\Allison\Desktop\Bikeadelic\SendEmail\bin\Debug\netstandard2.0\SendEmail.pdb
+C:\Users\Allison\Desktop\Bikeadelic\SendEmail\obj\Debug\netstandard2.0\SendEmail.csprojAssemblyReference.cache
+C:\Users\Allison\Desktop\Bikeadelic\SendEmail\obj\Debug\netstandard2.0\SendEmail.csproj.CoreCompileInputs.cache
+C:\Users\Allison\Desktop\Bikeadelic\SendEmail\obj\Debug\netstandard2.0\SendEmail.AssemblyInfoInputs.cache
+C:\Users\Allison\Desktop\Bikeadelic\SendEmail\obj\Debug\netstandard2.0\SendEmail.AssemblyInfo.cs
+C:\Users\Allison\Desktop\Bikeadelic\SendEmail\obj\Debug\netstandard2.0\SendEmail.dll
+C:\Users\Allison\Desktop\Bikeadelic\SendEmail\obj\Debug\netstandard2.0\SendEmail.pdb

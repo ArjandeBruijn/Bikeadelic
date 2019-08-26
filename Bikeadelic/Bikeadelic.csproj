@@ -114,11 +114,9 @@
     <Content Include="Bikes.aspx" />
     <Content Include="Calendar.aspx" />
     <Content Include="Calendar.js" />
-    <Content Include="DefaultNew.aspx" />
     <Content Include="Images\discount.png" />
     <Content Include="Images\facebook.png" />
     <Content Include="Images\HistoricPhoto.jpg" />
-    <Content Include="Images\LeeMartinezPark.JPG" />
     <Content Include="Images\Logo.jpg" />
     <Content Include="Images\refresh.png" />
     <Content Include="Images\Youtube.png" />
@@ -204,13 +202,6 @@
     </Compile>
     <Compile Include="Calendar.aspx.designer.cs">
       <DependentUpon>Calendar.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="DefaultNew.aspx.cs">
-      <DependentUpon>DefaultNew.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DefaultNew.aspx.designer.cs">
-      <DependentUpon>DefaultNew.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyWebFormsFriendlyUrlResolver .cs" />
     <Compile Include="Reserve.aspx.cs">
