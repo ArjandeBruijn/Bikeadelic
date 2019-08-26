@@ -1,2 +1,13 @@
 Scripts
 /packages
+/.vs
+/StrollAndRollDataAccess/bin
+/UploadPicsVids/bin
+/SendEmail/bin
+/StrollAndRollDesktopApp/bin
+/Bikeadelic/bin
+/StrollAndRollDataAccess/obj
+/UploadPicsVids/obj
+/SendEmail/obj
+/StrollAndRollDesktopApp/obj
+/Bikeadelic/obj
