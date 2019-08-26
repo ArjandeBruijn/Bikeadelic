@@ -68,7 +68,7 @@
 
                         <li><a style="font-size: 20px; padding: 15px; color: yellow" runat="server" href="~/Bikes">Bikes</a></li>
                         <li><a style="font-size: 20px; padding: 15px; color: yellow" runat="server" href="~/Prices">Prices</a></li>
-                        <li><a style="font-size: 20px; padding: 15px; color: yellow" runat="server" href="~/Reserve">Reserve</a></li>
+                        <!--<li><a style='font-size: 20px; padding: 15px; color: yellow' runat="server" href="~/Reserve">Reserve</a></li>-->
                         <li><a style="font-size: 20px; padding: 15px; color: yellow" runat="server" href="~/Gallery">Gallery</a></li>
                         <li><a style="font-size: 20px; padding: 15px; color: yellow" runat="server" href="~/FAQ">FAQ</a></li>
                         <li><a style="font-size: 20px; padding: 15px; color: yellow" runat="server" href="~/Survey">Survey</a></li>

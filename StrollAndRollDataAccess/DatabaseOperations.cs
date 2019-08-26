@@ -11,10 +11,10 @@ namespace StrollAndRollDataAccess
     
     public static class DatabaseOperations
     {
-        static SelectableDayPartOption Morning = new SelectableDayPartOption() { Name = DayPartSelection.DayPart.Morning.ToString(), Label = "Morning (9:00 am to 2:00 pm)" };
-        static SelectableDayPartOption Afternoon = new SelectableDayPartOption() { Name = DayPartSelection.DayPart.Afternoon.ToString(), Label = "Afternoon (2:00 pm to 7:00 pm)" };
-        static SelectableDayPartOption Evening = new SelectableDayPartOption() { Name = DayPartSelection.DayPart.Evening.ToString(), Label = "Evening (4:00 pm to dusk)" };
-        static SelectableDayPartOption Day = new SelectableDayPartOption() { Name = DayPartSelection.DayPart.Day.ToString(), Label = "Full day (9:00 am to 7:00 pm)" };
+        static SelectableDayPartOption Morning = new SelectableDayPartOption() { DayPart = DayPartSelection.DayPart.Morning.ToString(), Label = "Morning (9:00 am to 2:00 pm)" };
+        static SelectableDayPartOption Afternoon = new SelectableDayPartOption() { DayPart = DayPartSelection.DayPart.Afternoon.ToString(), Label = "Afternoon (2:00 pm to 7:00 pm)" };
+        static SelectableDayPartOption Evening = new SelectableDayPartOption() { DayPart = DayPartSelection.DayPart.Evening.ToString(), Label = "Evening (4:00 pm to dusk)" };
+        static SelectableDayPartOption Day = new SelectableDayPartOption() { DayPart = DayPartSelection.DayPart.Day.ToString(), Label = "Full day (9:00 am to 7:00 pm)" };
 
 
         public static string InventorySelectSql => "select count(b.name) as 'Count',m.displayorder, b.name, b.id, m.description, m.id as modelid from inventory i " +
@@ -36,11 +36,55 @@ namespace StrollAndRollDataAccess
         {
             return date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday;
         }
+        public static DateTime GetDateFromDateString(string dateString)
+        {
+            string[] dateElements = dateString.Split('/');
+
+            int month = Convert.ToInt32(dateElements[0]);
+
+            int day = Convert.ToInt32(dateElements[1]);
+
+            int year = Convert.ToInt32(dateElements[2]);
+
+            return new DateTime(year, month, day);
+        }
+        private static Event[] GetEvents()
+        {
+            string sql = "select id, date, dayPart, label from Events";
+              
+            Event[] events = GetItems<Event>(sql, (SqlDataReader reader) => 
+            {
+                Event newEvent = new Event();
+
+                newEvent.ID = reader["id"].ToString();
+
+                newEvent.DayPart = DayPartSelection.GetDayPart(reader["dayPart"].ToString());
+
+                newEvent.Date = GetDateFromDateString(reader["date"].ToString());
+
+                newEvent.Label = reader["label"].ToString();
+
+                return newEvent ;
+            });
+
+            return events;
+        }
         public static SelectableDayPartOptions GetSelectableDayPartOptions(DateTime date)
         {
             SelectableDayPartOptions selectableDayPartOptions = new SelectableDayPartOptions();
 
-            if (IsWeekend(date))
+            Event[] events = GetEvents();
+
+            Event eventThisDay = events.SingleOrDefault(e => e.Date.Ticks == date.Ticks);
+
+            if (eventThisDay!=null)
+            {
+                selectableDayPartOptions.dayPartSelections = new SelectableDayPartOption[]
+                {
+                    new SelectableDayPartOption(){ Label= eventThisDay.Label, DayPart= DayPartSelection.DayPart.Evening.ToString()}
+                };
+            }
+            else if (IsWeekend(date))
             {
                 selectableDayPartOptions.dayPartSelections = new SelectableDayPartOption[]
                 {
@@ -575,12 +619,14 @@ namespace StrollAndRollDataAccess
                     }[dayPart];
                 }
 
-                string dropOffTimePartMessage= $"{GetDropOffTimeByDayPart(dateSelection.DayPart)}";
+                string dropOffTimePartMessage= dateSelection.DayPart != null?
+                    $" at {GetDropOffTimeByDayPart(dateSelection.DayPart)}":
+                    string.Empty;
                  
                 string customerMessage = $"Dear {name} \n\n" +
                     $"Thank you for your reservation of {rentedBikesMessagePart}. \n\n" +
                     $"We have you down for {daySelectionPartMessage}. \n\n" +
-                    $"We are looking forward to see you at {dropOffTimePartMessage}. \n\n" +
+                    $"We are looking forward to see you {dropOffTimePartMessage}. \n\n" +
                     $"Please have cash payment of ${billingCost.Price} + tax ${billingCost.Tax} = ${billingCost.Price + billingCost.Tax} ready when you meet us there \n\n"+
                     $"We will contact you at {email} or {phoneNumber} to confirm.\n\n" +
                     $"Thank you for your business and looking forward to meet you.\n\n" +
@@ -674,9 +720,17 @@ namespace StrollAndRollDataAccess
             {
                 bikesAvailability.Message = $"The bikes you want are not available in the timeframe you specified";
             }
-            bikesAvailability.BillingCost
+
+            Event[] plannedEvents = GetEvents();
+
+            bikesAvailability.BillingCost = new BillingCost();
+
+            if (!(dateSelection ==null || plannedEvents.Any(e => e.Date.Ticks == dateSelection.CSharpDayTime.Ticks)))
+            {
+                bikesAvailability.BillingCost 
                     = GetPriceEstimateRental(email, bikesAvailability.Inventory, dateSelection);
-            
+            }
+             
             return bikesAvailability;
         }
 

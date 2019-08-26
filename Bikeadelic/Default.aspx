@@ -16,9 +16,11 @@
         
     <div style="width: 100%; background-color: white">
 
+         <!--
          <span  class="circle-text" style="display: inline; margin:10px; float: right; background-color: white">
             <div>We are looking for feedback and we now give you a 50% discount if you fill in our survey</div>
         </span>
+        -->
 
         <h2>We are:</h2>
 
@@ -31,19 +33,27 @@
         location in the Fort Collins area.  We will be able to show you how to ride the bikes and practice with 
         you untill you are comfortable to take them out on this awesome trail system that our city has. 
          
-        <iframe class="fb-review" src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FBikeadelic%2Fposts%2F2275444759435917&width=500" ;style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
          
+        <h2>Check it out!</h2>
+
+        We are currently doing FREE biweekly Penny Farthing rides. The way it works: 
+        We meet at a city park in Fort Collins, you borrow a penny farthing from us, we practice with you until you are comfortable and we visit a brewery on the bikes, have a beer and ride back. 
+        We have a variety of sizes that can fit most people. We also welcome kids (8+) to try our mini-penny farthing. 
+        Please RSVP if you want to come. The next ride is August 17.
+
     </div>
 
     <div style="width: 100%;min-height: 600px; background-color: white">
 
+        <iframe class="fb-review" src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FBikeadelic%2Fposts%2F2275444759435917&width=500" ;style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
         
-        <span id ="FrontPagePhoto"  style="display: inline; margin:10px; float: left; background-color: white">
+        
+        <span id ="FrontPagePhoto"  style="height:600px; display: inline; margin:10px; float: left; background-color: white">
             <img   style="width:100%; border: none; margin: 0px"
                 src="Images/FrontPageFamilyPicture.jpg" />
             Bikeadelic-rentals is a family business. 
         </span>
-
+         
         <h2>Are you:</h2>
          
             a. An on-the-go person?<br>
@@ -63,7 +73,6 @@
                     We would like both you and the bike to come back intact.  But maybe you 
                     could talk someone into taking your picture…
          
-
     </div>
 
 

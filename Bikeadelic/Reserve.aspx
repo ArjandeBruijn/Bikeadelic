@@ -51,7 +51,7 @@
 
                     for (var c = 0; c < dayPartSelections.length; c++)
                     {
-                        var dayPartString = dayPartSelections[c].Name;
+                        var dayPartString = dayPartSelections[c].DayPart;
                         var dayPartLabel = dayPartSelections[c].Label;
 
                         var handlerstring = "HandleSelectMorningAfterNoonRadioSelection('"+dayPartString+"')";

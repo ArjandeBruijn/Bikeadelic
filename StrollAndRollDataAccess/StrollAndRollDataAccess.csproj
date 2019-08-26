@@ -54,6 +54,7 @@
     <Compile Include="DTO\BikesAvailability.cs" />
     <Compile Include="DTO\BillingCost.cs" />
     <Compile Include="DTO\DateSelection.cs" />
+    <Compile Include="DTO\Event.cs" />
     <Compile Include="DTO\Faq.cs" />
     <Compile Include="DTO\InventoryGroup.cs" />
     <Compile Include="DTO\OpeningHours.cs" />

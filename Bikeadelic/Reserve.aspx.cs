@@ -13,33 +13,25 @@ namespace Bikeadelic
         }
         private static DateTime GetDateFromJavaScriptDate(string javascriptDate)
         {
-            int year = default(int);
-
-            int month = default(int);
-
-            int day = default(int);
-
+           
             if (javascriptDate.Length == 10)
             {
-                month  = Convert.ToInt32(javascriptDate.Substring(0, 2));
-
-                day = Convert.ToInt32(javascriptDate.Substring(3, 2));
-
-                year = Convert.ToInt32(javascriptDate.Substring(6, 4));
-                 
+                return DatabaseOperations.GetDateFromDateString(javascriptDate);
             }
             else
             {
-                year = Convert.ToInt32(javascriptDate.Substring(0, 4));
+                int year = Convert.ToInt32(javascriptDate.Substring(0, 4));
 
-                month = Convert.ToInt32(javascriptDate.Substring(5, 2));
+                int month = Convert.ToInt32(javascriptDate.Substring(5, 2));
 
-                day = Convert.ToInt32(javascriptDate.Substring(8, 2));
+                int day = Convert.ToInt32(javascriptDate.Substring(8, 2));
+
+                DateTime date = new DateTime(year, month, day);
+
+                return date;
             }
              
-            DateTime date = new DateTime(year, month, day);
-
-            return date;
+            
         }
 
         [WebMethod]

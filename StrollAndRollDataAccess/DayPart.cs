@@ -10,6 +10,7 @@ namespace StrollAndRollDataAccess
     {
         public enum DayPart
         {
+            Undefined,
             Morning,
             Afternoon,
             Evening,
@@ -17,8 +18,11 @@ namespace StrollAndRollDataAccess
         }
         public static DayPart[] AllDayParts => Enum.GetValues(typeof(DayPart)).Cast<DayPart>().ToArray();
 
-        public static DayPart GetDayPart(string dayPartString) {
-            return AllDayParts.Single(d => d.ToString() == dayPartString);
+        public static DayPart GetDayPart(string dayPartString)
+        {
+            DayPart daypart = AllDayParts.SingleOrDefault(d => d.ToString() == dayPartString);
+             
+            return daypart;
         }
 
         public static DayPart[] GetAvailableDayParts(DateTime date)

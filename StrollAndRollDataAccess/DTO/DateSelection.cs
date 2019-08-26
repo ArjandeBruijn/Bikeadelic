@@ -12,7 +12,13 @@ namespace StrollAndRollDataAccess
         public string Date { get; set; }
 
         public DayPartSelection.DayPart DayPartEnum
-            => DayPartSelection.GetDayPart(DayPart);
+        {
+            get
+            {
+                DayPartSelection.DayPart dayPart = DayPartSelection.GetDayPart(DayPart);
+                return dayPart;
+            }
+        }
          
          
         public int Year
